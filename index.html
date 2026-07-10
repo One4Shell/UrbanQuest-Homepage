@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Optimization -->
+    <title>Urban Quest | Esplora la Città Attraverso il Gioco</title>
+    <meta name="description" content="Trasforma la tua visita in un'avventura interattiva. Urban Quest ti guida tra i segreti di Bordighera, Vallecrosia e altre città d'Italia attraverso la geolocalizzazione.">
+    <meta name="keywords" content="Urban Quest, turismo interattivo, giochi di geolocalizzazione, Bordighera quest, Vallecrosia turismo, esplorazione urbana, gamification turismo">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://urbanquest.it/">
+    <meta property="og:title" content="Urban Quest | Esplora la Città Attraverso il Gioco">
+    <meta property="og:description" content="Visita punti di interesse storici, supera le tappe e completa le sfide scattando foto reali del tuo percorso.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1200&h=630&q=80">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://urbanquest.it/">
+    <meta property="twitter:title" content="Urban Quest | Esplora la Città Attraverso il Gioco">
+    <meta property="twitter:description" content="Visita punti di interesse storici, supera le tappe e completa le sfide scattando foto reali del tuo percorso.">
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1200&h=630&q=80">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    animation: {
+                        'marquee': 'marquee 25s linear infinite',
+                        'marquee-reverse': 'marquee-reverse 25s linear infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        'marquee-reverse': {
+                            '0%': { transform: 'translateX(-50%)' },
+                            '100%': { transform: 'translateX(0%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(156, 163, 175, 0.5);
+            border-radius: 20px;
+        }
+
+        /* Floating animation for app showcase mockups */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-delay-1 { animation: float 6s ease-in-out infinite; animation-delay: 1.5s; }
+        .animate-float-delay-2 { animation: float 6s ease-in-out infinite; animation-delay: 3s; }
+        .animate-float-delay-3 { animation: float 6s ease-in-out infinite; animation-delay: 4.5s; }
+
+        /* Map grid pattern for mockup backgrounds */
+        .map-grid-bg {
+            background-image:
+                linear-gradient(rgba(99, 102, 241, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        /* Pulse ring for GPS dot */
+        @keyframes gps-pulse {
+            0% { transform: scale(0.8); opacity: 0.8; }
+            100% { transform: scale(2.4); opacity: 0; }
+        }
+        .gps-pulse-ring { animation: gps-pulse 2s ease-out infinite; }
+    </style>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Urban Quest",
+      "alternateName": "Urban Quest App",
+      "url": "https://urbanquest.it",
+      "applicationCategory": "TravelApplication",
+      "operatingSystem": "iOS, Android, Web Browser",
+      "description": "An interactive geolocation-based game transforming city sightseeing into an exploration quest.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00",
+        "priceCurrency": "EUR"
+      }
+    }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 antialiased font-sans">
+
+    <header class="fixed top-0 left-0 w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50 transition-all">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="p-1 w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white font-extrabold shadow-lg shadow-indigo-500/20">
+                    <img src="https://img.icons8.com/?size=100&id=tH0uJjgya4ce&format=png&color=FFFFFF">
+                </div>
+                <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
+                    Urban Quest
+                </span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#how-it-works" data-i18n="nav_how" class="text-sm font-medium text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Come funziona</a>
+                <a href="#cities" data-i18n="nav_cities" class="text-sm font-medium text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Le Città</a>
+                <a href="#sponsors" data-i18n="nav_sponsors" class="text-sm font-medium text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Sponsor</a>
+                <a href="#pricing" data-i18n="nav_pricing" class="text-sm font-medium text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Piani Partner</a>
+            </nav>
+
+            <!-- Actions (Lang, Theme, CTA) -->
+            <div class="flex items-center gap-4">
+                <!-- Language Switcher -->
+                <div class="relative inline-block text-left" id="lang-menu">
+                    <button type="button" onclick="toggleLangDropdown()" class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+                        <span id="current-lang-label">IT</span>
+                        <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-32 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl z-50">
+                        <div class="p-1">
+                            <button onclick="changeLang('it')" class="w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Italiano</button>
+                            <button onclick="changeLang('en')" class="w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">English</button>
+                            <button onclick="changeLang('fr')" class="w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Français</button>
+                            <button onclick="changeLang('de')" class="w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">Deutsch</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Theme Toggle -->
+                <button onclick="toggleDarkMode()" class="p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" aria-label="Toggle dark mode">
+                    <!-- Light Mode Icon (Sun) -->
+                    <svg id="theme-icon-light" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <!-- Dark Mode Icon (Moon) -->
+                    <svg id="theme-icon-dark" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+
+                <!-- Hero CTA (Navbar) -->
+                <a href="#cities" data-i18n="cta_start" class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl transition-all shadow-md shadow-indigo-600/10">
+                    Esplora Ora
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative pt-32 pb-24 overflow-hidden">
+        <!-- Background Gradients -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl"></div>
+            <div class="absolute top-60 -right-40 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <!-- Left Info -->
+            <div class="lg:col-span-7 flex flex-col justify-center text-center lg:text-left">
+                <span data-i18n="hero_badge" class="self-center lg:self-start inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 mb-6">
+                    Esplorazione urbana basata sulla geolocalizzazione
+                </span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
+                    <span data-i18n="hero_title_1" class="block text-slate-950 dark:text-white">Esplora la città</span>
+                    <span data-i18n="hero_title_2" class="block bg-gradient-to-r from-indigo-600 to-violet-500 bg-clip-text text-transparent">Attraverso il Gioco</span>
+                </h1>
+                <p data-i18n="hero_desc" class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+                    Urban Quest trasforma le storiche vie d'Italia in un'avventura interattiva a tappe. Scopri angoli nascosti, raggiungi gli obiettivi GPS e convalida il percorso scattando foto sul posto.
+                </p>
+
+                <!-- Modern Interactive Experience Selector Form -->
+                <div class="w-full max-w-md mx-auto lg:mx-0 bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 p-5 rounded-3xl shadow-xl transition-all duration-300 mb-10">
+                    <form onsubmit="handleHeroQuestSubmit(event)" class="space-y-4">
+                        <div>
+                            <label data-i18n="hero_form_city_label" class="block text-xs font-bold tracking-wide uppercase text-slate-400 dark:text-slate-500 mb-2">Seleziona Esperienza</label>
+                            <div class="relative">
+                                <select id="hero-city-select" required class="w-full appearance-none px-4 py-3.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 dark:focus:border-indigo-400 rounded-2xl outline-none text-sm transition-all text-slate-900 dark:text-white font-semibold">
+                                    <option value="Bordighera">Bordighera Quest</option>
+                                    <option value="Vallecrosia">Vallecrosia Quest</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                                    <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CTA Button -->
+                        <button type="submit" class="w-full py-4 bg-gradient-to-tr from-indigo-600 to-violet-500 hover:from-indigo-700 hover:to-violet-600 text-white font-extrabold text-sm rounded-2xl transition-all shadow-lg shadow-indigo-600/20 flex items-center justify-center gap-2">
+                            <span data-i18n="hero_form_submit">Avvia l'Avventura</span>
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Quick stats -->
+                <div class="grid grid-cols-3 gap-6 pt-8 border-t border-slate-200 dark:border-slate-800 max-w-md mx-auto lg:mx-0">
+                    <div>
+                        <div class="text-2xl font-extrabold text-indigo-600 dark:text-indigo-400">0</div>
+                        <div data-i18n="stat_cities" class="text-xs text-slate-500 dark:text-slate-400 mt-1">Città Attive</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-extrabold text-indigo-600 dark:text-indigo-400">100%</div>
+                        <div data-i18n="stat_mobile" class="text-xs text-slate-500 dark:text-slate-400 mt-1">Mobile First</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-extrabold text-indigo-600 dark:text-indigo-400">0+</div>
+                        <div data-i18n="stat_download" class="text-xs text-slate-500 dark:text-slate-400 mt-1">Senza Installazione</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Visual: High Fidelity Mobile Mockup containing Unsplash Real Photo -->
+            <div class="lg:col-span-5 flex justify-center relative">
+                <!-- Decorative background elements -->
+                <div class="absolute -right-10 top-10 w-48 h-48 bg-gradient-to-tr from-violet-500 to-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 dark:opacity-40 animate-pulse"></div>
+                <div class="absolute -left-10 bottom-10 w-48 h-48 bg-indigo-400 to-violet-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 dark:opacity-40 animate-pulse" style="animation-delay: 2s;"></div>
+
+                <!-- Modern Smartphone Frame -->
+                <div class="relative w-72 sm:w-80 aspect-[9/18] bg-slate-950 dark:bg-slate-900 rounded-[48px] p-3 shadow-2xl border-4 border-slate-200 dark:border-slate-800/80 ring-1 ring-slate-900/10 dark:ring-white/10 overflow-hidden group">
+                    <div class="w-full h-full rounded-[38px] overflow-hidden relative bg-slate-100 dark:bg-slate-950">
+                        <!-- Simulated Camera Notch -->
+                        <div class="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-4 bg-slate-950 rounded-full z-30"></div>
+                        
+                        <!-- Premium Travel/Navigation Photography -->
+                        <img src="images/screen1.png" 
+                             alt="Urban Quest App Interface Mockup" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                             onerror="this.src='https://placehold.co/800x1600/6366f1/ffffff?text=Urban+Quest+App'">
+                             
+                        <!-- Elegant dark vignette reflection layer -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-black/20 pointer-events-none z-10"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10 bg-slate-100/50 dark:bg-slate-900/50 border-y border-slate-200/50 dark:border-slate-800/50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 mb-4 flex justify-between items-center">
+            <span data-i18n="marquee_title" class="text-xs font-bold tracking-widest text-slate-400 dark:text-slate-500 uppercase">I Nostri Sponsor e Partner Locali</span>
+        </div>
+        <div class="relative w-full flex overflow-x-hidden">
+            <!-- First group -->
+            <div class="animate-marquee whitespace-nowrap flex items-center gap-16 text-slate-400 dark:text-slate-600 font-bold">
+                <span class="text-xl tracking-tight flex items-center gap-2">RISTORANTE DA MARIO</span>
+                <span class="text-xl tracking-tight flex items-center gap-2">CAFFÈ CENTRALE</span>
+                <span class="text-xl tracking-tight flex items-center gap-2">HOTEL RIVIERA</span>
+                <span class="text-xl tracking-tight flex items-center gap-2">LIGURIA TOURS</span>
+                <span class="text-xl tracking-tight flex items-center gap-2">PASTICCERIA MILLEFOGLIE</span>
+                <span class="text-xl tracking-tight flex items-center gap-2">GELATERIA MARE</span>
+            </div>
+            <!-- Second group (identical copy to make it seamless) -->
+            <div class="animate-marquee whitespace-nowrap flex items-center gap-16 text-slate-400 dark:text-slate-600 font-bold" aria-hidden="true">
+                <span class="text-xl tracking-tight flex items-center gap-2">RISTORANTE DA MARIO</span>
+                <span class="text-xl tracking-tight flex items-center gap-2">CAFFÈ CENTRALE</span>
+                <span class="text-xl tracking-tight flex items-center gap-2">HOTEL RIVIERA</span>
+                <span class="text-xl tracking-tight flex items-center gap-2">LIGURIA TOURS</span>
+                <span class="text-xl tracking-tight flex items-center gap-2">PASTICCERIA MILLEFOGLIE</span>
+                <span class="text-xl tracking-tight flex items-center gap-2">GELATERIA MARE</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span data-i18n="how_sub" class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase">L'Esperienza Di Gioco</span>
+                <h2 data-i18n="how_title" class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-3 text-slate-950 dark:text-white">Come Funziona Urban Quest?</h2>
+                <p data-i18n="how_desc" class="text-slate-600 dark:text-slate-400 mt-4">Nessuna installazione complessa o registrazioni infinite. Accedi semplicemente dal tuo browser ed esplora immediatamente.</p>
+            </div>
+
+            <!-- Steps Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="relative bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-extrabold text-lg mb-6">
+                        01
+                    </div>
+                    <h3 data-i18n="step1_title" class="text-lg font-bold text-slate-950 dark:text-white mb-2">Apri il Link</h3>
+                    <p data-i18n="step1_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Accedi alla mappa del comune semplicemente scansionando un codice QR in loco o aprendo il link della quest dedicata.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-extrabold text-lg mb-6">
+                        02
+                    </div>
+                    <h3 data-i18n="step2_title" class="text-lg font-bold text-slate-950 dark:text-white mb-2">Inserisci il Nome</h3>
+                    <p data-i18n="step2_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Inserisci un nickname temporaneo direttamente nella pagina di atterraggio. Sei subito pronto per iniziare l'avventura.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-extrabold text-lg mb-6">
+                        03
+                    </div>
+                    <h3 data-i18n="step3_title" class="text-lg font-bold text-slate-950 dark:text-white mb-2">Trova i POI sulla Mappa</h3>
+                    <p data-i18n="step3_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Segui la mappa integrata con il tuo GPS. Visita attrazioni culturali e monumenti, inclusi punti speciali sponsorizzati.
+                    </p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-extrabold text-lg mb-6">
+                        04
+                    </div>
+                    <h3 data-i18n="step4_title" class="text-lg font-bold text-slate-950 dark:text-white mb-2">Scatta la Foto</h3>
+                    <p data-i18n="step4_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Una volta sul posto, scatta una foto per dimostrare la visita, completa la quest e sblocca il premio finale.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= APP SHOWCASE SECTION ================= -->
+    <section id="app-showcase" class="py-24 relative overflow-hidden bg-slate-100/30 dark:bg-slate-900/20">
+        <!-- Decorative background -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-20 left-1/4 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-1/4 w-72 h-72 bg-violet-500/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span data-i18n="showcase_sub" class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase">L'Esperienza dell'App</span>
+                <h2 data-i18n="showcase_title" class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-3 text-slate-950 dark:text-white">Guarda Urban Quest in Azione</h2>
+                <p data-i18n="showcase_desc" class="text-slate-600 dark:text-slate-400 mt-4">Dalla mappa interattiva alla quest completata. Scopri ogni schermata dell'esperienza di gioco direttamente dal tuo smartphone.</p>
+            </div>
+
+            <!-- Mockups Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4">
+
+                <!-- =========================================== -->
+                <!-- MOCKUP 1: Interactive Map -->
+                <!-- =========================================== -->
+                <div class="flex flex-col items-center group">
+                    <div class="relative animate-float">
+                        <!-- Smartphone Frame -->
+                        <div class="relative w-56 sm:w-60 aspect-[9/18] bg-slate-950 dark:bg-slate-900 rounded-[40px] p-2.5 shadow-2xl border-[3px] border-slate-200 dark:border-slate-800/80 ring-1 ring-slate-900/10 dark:ring-white/10 overflow-hidden transition-transform duration-500 group-hover:scale-105">
+                            <img src="images/screen2.png" alt="Interactive Map Mockup" class="w-full h-full object-cover rounded-[32px] transition-transform duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/800x1600/6366f1/ffffff?text=Interactive+Map'">
+                        </div>
+                    </div>
+                    <!-- Label -->
+                    <div class="mt-6 text-center">
+                        <span class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase" data-i18n="mock1_label">Mappa Interattiva</span>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-[14rem]" data-i18n="mock1_caption">Naviga la città con POI geolocalizzati e percorsi GPS in tempo reale.</p>
+                    </div>
+                </div>
+
+                <!-- =========================================== -->
+                <!-- MOCKUP 2: POI Detail -->
+                <!-- =========================================== -->
+                <div class="flex flex-col items-center group">
+                    <div class="relative animate-float-delay-1">
+                        <!-- Smartphone Frame -->
+                        <div class="relative w-56 sm:w-60 aspect-[9/18] bg-slate-950 dark:bg-slate-900 rounded-[40px] p-2.5 shadow-2xl border-[3px] border-slate-200 dark:border-slate-800/80 ring-1 ring-slate-900/10 dark:ring-white/10 overflow-hidden transition-transform duration-500 group-hover:scale-105">
+                            <img src="images/screen3.png" alt="POI Detail Mockup" class="w-full h-full object-cover rounded-[32px] transition-transform duration-700 group-hover:scale-105" onerror="this.src='https://placehold.co/800x1600/6366f1/ffffff?text=POI+Detail'">
+                        </div>
+                    </div>
+                    <!-- Label -->
+                    <div class="mt-6 text-center">
+                        <span class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase" data-i18n="mock2_label">Dettaglio Tappa</span>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-[14rem]" data-i18n="mock2_caption">Scopri storia e curiosità di ogni monumento con schede dettagliate.</p>
+                    </div>
+                </div>
+
+                <!-- =========================================== -->
+                <!-- MOCKUP 3: Photo Validation -->
+                <!-- =========================================== -->
+                <div class="flex flex-col items-center group">
+                    <div class="relative animate-float-delay-2">
+                        <!-- Smartphone Frame -->
+                        <div class="relative w-56 sm:w-60 aspect-[9/18] bg-slate-950 dark:bg-slate-900 rounded-[40px] p-2.5 shadow-2xl border-[3px] border-slate-200 dark:border-slate-800/80 ring-1 ring-slate-900/10 dark:ring-white/10 overflow-hidden transition-transform duration-500 group-hover:scale-105">
+                            <div class="w-full h-full rounded-[32px] overflow-hidden relative bg-slate-950">
+                                <!-- Notch -->
+                                <div class="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-3.5 bg-slate-950 rounded-full z-30"></div>
+
+                                <!-- Camera Viewfinder Background -->
+                                <div class="absolute inset-0 bg-gradient-to-br from-sky-200 via-slate-300 to-emerald-200 dark:from-slate-800 dark:via-slate-700 dark:to-slate-800">
+                                    <!-- Simulated scenery -->
+                                    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 200 400" preserveAspectRatio="xMidYMid slice">
+                                        <!-- Sky -->
+                                        <rect width="200" height="180" fill="rgba(135,206,235,0.3)"/>
+                                        <!-- Sun -->
+                                        <circle cx="150" cy="60" r="20" fill="rgba(253,224,71,0.5)"/>
+                                        <!-- Mountains -->
+                                        <path d="M0 180 L50 100 L100 160 L150 90 L200 150 L200 180 Z" fill="rgba(71,85,105,0.3)"/>
+                                        <!-- Sea -->
+                                        <rect y="180" width="200" height="80" fill="rgba(59,130,246,0.25)"/>
+                                        <!-- Beach -->
+                                        <path d="M0 260 Q100 250 200 260 L200 280 L0 280 Z" fill="rgba(252,211,77,0.3)"/>
+                                        <!-- Building (Church silhouette) -->
+                                        <rect x="70" y="120" width="60" height="60" fill="rgba(239,68,68,0.2)"/>
+                                        <path d="M70 120 L100 90 L130 120 Z" fill="rgba(239,68,68,0.25)"/>
+                                    </svg>
+                                </div>
+
+                                <!-- Camera UI Overlay -->
+                                <!-- Top bar -->
+                                <div class="absolute top-7 left-0 right-0 z-20 px-3 py-2 flex items-center justify-between">
+                                    <div class="px-2 py-1 rounded-full bg-emerald-500 text-white text-[8px] font-extrabold flex items-center gap-1 shadow-lg">
+                                        <svg class="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                                        <span data-i18n="mock3_onsite">Sei sul posto!</span>
+                                    </div>
+                                    <div class="px-2 py-1 rounded-full bg-black/50 backdrop-blur-sm text-white text-[8px] font-bold flex items-center gap-1">
+                                        <svg class="w-2.5 h-2.5 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2C6.686 2 4 4.686 4 8c0 5.25 6 10 6 10s6-4.75 6-10c0-3.314-2.686-6-6-6zm0 8a2 2 0 110-4 2 2 0 010 4z"/></svg>
+                                        <span>GPS ✓</span>
+                                    </div>
+                                </div>
+
+                                <!-- Focus Frame -->
+                                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+                                    <div class="relative w-28 h-28">
+                                        <!-- Corner brackets -->
+                                        <div class="absolute top-0 left-0 w-5 h-5 border-t-[3px] border-l-[3px] border-white rounded-tl-lg"></div>
+                                        <div class="absolute top-0 right-0 w-5 h-5 border-t-[3px] border-r-[3px] border-white rounded-tr-lg"></div>
+                                        <div class="absolute bottom-0 left-0 w-5 h-5 border-b-[3px] border-l-[3px] border-white rounded-bl-lg"></div>
+                                        <div class="absolute bottom-0 right-0 w-5 h-5 border-b-[3px] border-r-[3px] border-white rounded-br-lg"></div>
+                                        <!-- Target hint -->
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <span class="text-[8px] font-bold text-white/80 bg-black/40 px-2 py-0.5 rounded-full backdrop-blur-sm" data-i18n="mock3_hint">Inquadra il POI</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- GPS Validation Info -->
+                                <div class="absolute bottom-20 left-3 right-3 z-20">
+                                    <div class="bg-black/60 backdrop-blur-md rounded-2xl p-2.5 border border-white/10">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-7 h-7 rounded-lg bg-emerald-500/20 flex items-center justify-center shrink-0">
+                                                <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                            </div>
+                                            <div class="flex-1">
+                                                <div class="text-[8px] font-bold text-emerald-400 uppercase" data-i18n="mock3_validated">Posizione validata</div>
+                                                <div class="text-[9px] text-white font-semibold">Distanza: 8m dal POI</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Capture Button -->
+                                <div class="absolute bottom-4 left-0 right-0 z-20 flex items-center justify-center">
+                                    <button class="w-14 h-14 rounded-full border-4 border-white shadow-2xl flex items-center justify-center active:scale-90 transition-transform">
+                                        <div class="w-10 h-10 rounded-full bg-white"></div>
+                                    </button>
+                                </div>
+
+                                <!-- Side controls -->
+                                <div class="absolute bottom-6 right-3 z-20 flex flex-col gap-2">
+                                    <div class="w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Label -->
+                    <div class="mt-6 text-center">
+                        <span class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase" data-i18n="mock3_label">Convalida Foto</span>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-[14rem]" data-i18n="mock3_caption">Scatta una foto sul posto per convalidare la tappa con GPS.</p>
+                    </div>
+                </div>
+
+                <!-- =========================================== -->
+                <!-- MOCKUP 4: Quest Completed -->
+                <!-- =========================================== -->
+                <div class="flex flex-col items-center group">
+                    <div class="relative animate-float-delay-3">
+                        <!-- Smartphone Frame -->
+                        <div class="relative w-56 sm:w-60 aspect-[9/18] bg-slate-950 dark:bg-slate-900 rounded-[40px] p-2.5 shadow-2xl border-[3px] border-slate-200 dark:border-slate-800/80 ring-1 ring-slate-900/10 dark:ring-white/10 overflow-hidden transition-transform duration-500 group-hover:scale-105">
+                            <div class="w-full h-full rounded-[32px] overflow-hidden relative bg-gradient-to-b from-indigo-600 via-violet-600 to-slate-950">
+                                <!-- Notch -->
+                                <div class="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-3.5 bg-slate-950 rounded-full z-30"></div>
+
+                                <!-- Confetti decorations -->
+                                <div class="absolute inset-0 overflow-hidden z-10">
+                                    <div class="absolute top-12 left-4 w-2 h-2 bg-yellow-400 rounded-sm rotate-45"></div>
+                                    <div class="absolute top-20 right-6 w-1.5 h-1.5 bg-pink-400 rounded-full"></div>
+                                    <div class="absolute top-32 left-8 w-2 h-2 bg-emerald-400 rounded-sm rotate-12"></div>
+                                    <div class="absolute top-16 right-10 w-1.5 h-1.5 bg-blue-300 rounded-full"></div>
+                                    <div class="absolute top-28 right-4 w-2 h-2 bg-yellow-300 rounded-sm rotate-45"></div>
+                                    <div class="absolute top-40 left-6 w-1.5 h-1.5 bg-pink-300 rounded-full"></div>
+                                    <div class="absolute top-10 right-12 w-1 h-3 bg-emerald-300 rounded-sm rotate-45"></div>
+                                </div>
+
+                                <!-- Content -->
+                                <div class="relative z-20 flex flex-col items-center justify-center h-full px-4 pt-10 pb-6">
+                                    <!-- Trophy Icon -->
+                                    <div class="relative mb-4">
+                                        <div class="absolute inset-0 bg-yellow-400 rounded-full blur-xl opacity-50 animate-pulse"></div>
+                                        <div class="relative w-16 h-16 rounded-full bg-gradient-to-tr from-yellow-400 to-amber-500 flex items-center justify-center shadow-2xl shadow-amber-500/50">
+                                            <svg class="w-9 h-9 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M5 4a1 1 0 011-1h12a1 1 0 011 1v3a5 5 0 01-5 5h-2v2h2a3 3 0 013 3v3a1 1 0 01-1 1H8a1 1 0 01-1-1v-3a3 3 0 013-3h2v-2H9a5 5 0 01-5-5V4z"/></svg>
+                                        </div>
+                                    </div>
+
+                                    <!-- Success text -->
+                                    <div class="text-center mb-5">
+                                        <h3 class="text-base font-extrabold text-white tracking-tight" data-i18n="mock4_title">Quest Completata!</h3>
+                                        <p class="text-[9px] text-indigo-200 mt-1" data-i18n="mock4_subtitle">Hai esplorato tutte le tappe di Bordighera</p>
+                                    </div>
+
+                                    <!-- Stats grid -->
+                                    <div class="grid grid-cols-3 gap-2 w-full mb-5">
+                                        <div class="bg-white/15 backdrop-blur-sm rounded-xl p-2 text-center border border-white/10">
+                                            <div class="text-[8px] text-indigo-200 font-bold uppercase" data-i18n="mock4_stat1">Tappe</div>
+                                            <div class="text-sm font-extrabold text-white">5/5</div>
+                                        </div>
+                                        <div class="bg-white/15 backdrop-blur-sm rounded-xl p-2 text-center border border-white/10">
+                                            <div class="text-[8px] text-indigo-200 font-bold uppercase" data-i18n="mock4_stat2">Tempo</div>
+                                            <div class="text-sm font-extrabold text-white">42m</div>
+                                        </div>
+                                        <div class="bg-white/15 backdrop-blur-sm rounded-xl p-2 text-center border border-white/10">
+                                            <div class="text-[8px] text-indigo-200 font-bold uppercase" data-i18n="mock4_stat3">Foto</div>
+                                            <div class="text-sm font-extrabold text-white">5</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Reward Badge -->
+                                    <div class="w-full bg-gradient-to-r from-amber-500/30 to-yellow-500/30 backdrop-blur-sm rounded-2xl p-2.5 border border-yellow-400/30 mb-4">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-400 to-yellow-500 flex items-center justify-center shrink-0">
+                                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                            </div>
+                                            <div class="flex-1">
+                                                <div class="text-[8px] font-bold text-yellow-300 uppercase" data-i18n="mock4_reward">Premio sbloccato</div>
+                                                <div class="text-[10px] font-extrabold text-white">Sconto 15% - Ristorante Da Mario</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Share Button -->
+                                    <button class="w-full py-2.5 bg-white text-indigo-700 font-extrabold text-[10px] rounded-xl flex items-center justify-center gap-1.5 shadow-xl">
+                                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                                        <span data-i18n="mock4_share">Condividi l'Impresa</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Label -->
+                    <div class="mt-6 text-center">
+                        <span class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase" data-i18n="mock4_label">Quest Completata</span>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-[14rem]" data-i18n="mock4_caption">Completa il percorso e sblocca premi e sconti dai nostri partner locali.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ================= END APP SHOWCASE SECTION ================= -->
+
+    <section id="cities" class="py-24 bg-slate-100/30 dark:bg-slate-900/10 border-t border-b border-slate-200/50 dark:border-slate-800/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span data-i18n="cities_sub" class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase">Le Destinazioni Attive</span>
+                <h2 data-i18n="cities_title" class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-3 text-slate-950 dark:text-white">Dove puoi iniziare la tua Quest?</h2>
+                <p data-i18n="cities_desc" class="text-slate-600 dark:text-slate-400 mt-4">Scopri i primi comuni che hanno adottato la nostra piattaforma per regalare un'esperienza interattiva unica a residenti e turisti.</p>
+            </div>
+
+            <!-- Cities Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- City 1: Bordighera -->
+                <div class="bg-white dark:bg-slate-900 rounded-[32px] overflow-hidden border border-slate-200/60 dark:border-slate-800/80 shadow-lg group hover:shadow-2xl transition-all duration-300">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://italian-riviera.com/wp-content/uploads/2024/07/22085211081_bacd733121_5k-1024x576.jpg" alt="Bordighera, Italia" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6">
+                            <span class="px-2.5 py-1 bg-indigo-600 text-white font-bold text-[10px] tracking-wider rounded uppercase">Liguria</span>
+                            <h3 class="text-2xl font-extrabold text-white mt-2">Bordighera</h3>
+                        </div>
+                    </div>
+                    <div class="p-8 space-y-6">
+                        <p data-i18n="city_1_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                            Esplora l'iconica città delle palme, dalle spettacolari vedute sul mare del Sentiero di Sant'Ampelio alle incantevoli e strette vie storiche del borgo antico di Bordighera Alta.
+                        </p>
+                        <div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800/80 pt-6">
+                            <div class="text-xs text-slate-500 dark:text-slate-400">
+                                <span class="font-bold text-slate-800 dark:text-white">5</span> <span data-i18n="poi_count">Tappe attive</span>
+                            </div>
+                            <button onclick="simulateQuest('Bordighera')" data-i18n="btn_view_map" class="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:hover:bg-slate-100 dark:text-slate-900 font-bold text-xs rounded-xl transition-all shadow-sm">
+                                Vedi Dettagli Mappa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- City 2: Vallecrosia -->
+                <div class="bg-white dark:bg-slate-900 rounded-[32px] overflow-hidden border border-slate-200/60 dark:border-slate-800/80 shadow-lg group hover:shadow-2xl transition-all duration-300">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://www.gedistatic.it/content/gnn/img/ilsecoloxix/2025/10/14/195856269-245a3f12-a424-4d6f-96d1-6d10c4da5f6b.jpg" alt="Vallecrosia, Italia" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6">
+                            <span class="px-2.5 py-1 bg-indigo-600 text-white font-bold text-[10px] tracking-wider rounded uppercase">Liguria</span>
+                            <h3 class="text-2xl font-extrabold text-white mt-2">Vallecrosia</h3>
+                        </div>
+                    </div>
+                    <div class="p-8 space-y-6">
+                        <p data-i18n="city_2_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                            Avventurati attraverso l'affascinante centro medievale di Vallecrosia Alta. Cammina lungo antichi sentieri di pietra scoprendo la storia delle caratteristiche torri difensive.
+                        </p>
+                        <div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800/80 pt-6">
+                            <div class="text-xs text-slate-500 dark:text-slate-400">
+                                <span class="font-bold text-slate-800 dark:text-white">4</span> <span data-i18n="poi_count">Tappe attive</span>
+                            </div>
+                            <button onclick="simulateQuest('Vallecrosia')" data-i18n="btn_view_map" class="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:hover:bg-slate-100 dark:text-slate-900 font-bold text-xs rounded-xl transition-all shadow-sm">
+                                Vedi Dettagli Mappa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sponsors" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span data-i18n="sponsors_sub" class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase">Per Le Attività Locali</span>
+                <h2 data-i18n="sponsors_title" class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-3 text-slate-950 dark:text-white">Fai Crescere la Tua Visibilità Reale</h2>
+                <p data-i18n="sponsors_desc" class="text-slate-600 dark:text-slate-400 mt-4">Includiamo la tua attività commerciale all'interno delle nostre tappe interattive, portando turisti fisicamente davanti alle tue porte o integrando sconti speciali nel percorso di gioco.</p>
+            </div>
+
+            <!-- Pricing Grid -->
+            <div id="pricing" class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+                <!-- Bronze -->
+                <div class="bg-white dark:bg-slate-900 rounded-[32px] p-8 border border-slate-200/50 dark:border-slate-800/50 relative hover:shadow-xl transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-400 text-xs font-bold tracking-wide rounded-full uppercase" data-i18n="tier_bronze_title">Bronzo</span>
+                            <span class="text-slate-400 dark:text-slate-500 text-xs font-bold">180€ / anno</span>
+                        </div>
+                        <p data-i18n="tier_bronze_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">Perfetto per iniziare ad apparire sulla mappa locale con logo e un banner dedicato.</p>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
+                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span data-i18n="tier_b1">Presenza sulla mappa del comune</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
+                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span data-i18n="tier_b2">Logo aziendale personalizzato</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
+                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span data-i18n="tier_b3">Banner promozionale</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#sponsor-form-section" onclick="selectTier('bronze')" data-i18n="tier_cta" class="w-full py-3.5 text-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold text-sm rounded-xl transition-all">Scegli Bronzo</a>
+                </div>
+
+                <!-- Silver -->
+                <div class="bg-gradient-to-b from-indigo-500/10 to-indigo-500/0 dark:from-indigo-500/10 dark:to-transparent bg-white dark:bg-slate-900 rounded-[32px] p-8 border-2 border-indigo-500 relative hover:shadow-xl transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-indigo-600 text-white font-bold text-[10px] tracking-widest uppercase px-3 py-1 rounded-full" data-i18n="most_popular">Consigliato</div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300 text-xs font-bold tracking-wide rounded-full uppercase" data-i18n="tier_silver_title">Argento</span>
+                            <span class="text-indigo-600 dark:text-indigo-400 text-xs font-bold">380€ / anno</span>
+                        </div>
+                        <p data-i18n="tier_silver_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">Migliora le conversioni integrando azioni dirette, link al tuo sito web o promozioni.</p>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
+                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span class="font-medium" data-i18n="tier_s1">Tutto incluso nel pacchetto Bronzo</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
+                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span data-i18n="tier_s2">Pulsante Call to Action personalizzato</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
+                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span data-i18n="tier_s3">Link diretto (Web/WhatsApp/Social)</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#sponsor-form-section" onclick="selectTier('silver')" data-i18n="tier_cta" class="w-full py-3.5 text-center bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm rounded-xl transition-all shadow-md shadow-indigo-600/10">Scegli Argento</a>
+                </div>
+
+                <!-- Gold -->
+                <div class="bg-white dark:bg-slate-900 rounded-[32px] p-8 border border-slate-200/50 dark:border-slate-800/50 relative hover:shadow-xl transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-950 text-yellow-800 dark:text-yellow-400 text-xs font-bold tracking-wide rounded-full uppercase" data-i18n="tier_gold_title">Oro</span>
+                            <span class="text-slate-400 dark:text-slate-500 text-xs font-bold">580€ / anno</span>
+                        </div>
+                        <p data-i18n="tier_gold_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">Diventa parte essenziale del gioco come tappa obbligatoria del percorso cittadino.</p>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
+                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span class="font-medium" data-i18n="tier_g1">Tutto incluso nel pacchetto Argento</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
+                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span class="font-semibold text-indigo-600 dark:text-indigo-400" data-i18n="tier_g2">Tappa fissa obbligatoria della quest</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
+                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span data-i18n="tier_g3">Traffico fisico diretto garantito all'attività</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#sponsor-form-section" onclick="selectTier('gold')" data-i18n="tier_cta" class="w-full py-3.5 text-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold text-sm rounded-xl transition-all">Scegli Oro</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sponsor-form-section" class="py-24 bg-slate-100/50 dark:bg-slate-900/30 border-t border-slate-200/50 dark:border-slate-800/50">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-white dark:bg-slate-900 rounded-[40px] border border-slate-200/60 dark:border-slate-800/80 shadow-2xl p-8 sm:p-12 relative overflow-hidden">
+                <div class="absolute -right-20 -top-20 w-60 h-60 bg-indigo-500/5 rounded-full blur-3xl"></div>
+                
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 data-i18n="form_title" class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-950 dark:text-white">Diventa Sponsor e Unisciti a Noi</h2>
+                    <p data-i18n="form_desc" class="text-sm text-slate-600 dark:text-slate-400 mt-2">Compila i campi sottostanti. Il nostro team ti contatterà entro 24 ore per finalizzare il posizionamento sulla mappa.</p>
+                </div>
+
+                <form id="sponsor-form" onsubmit="handleFormSubmit(event)" class="space-y-6 relative z-10">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Nome Referente -->
+                        <div>
+                            <label data-i18n="label_name" class="block text-xs font-bold tracking-wide uppercase text-slate-500 dark:text-slate-400 mb-2">Nome Referente</label>
+                            <input type="text" required name="name" class="w-full px-4 py-3.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 dark:focus:border-indigo-400 rounded-xl outline-none text-sm transition-all text-slate-900 dark:text-white font-medium">
+                        </div>
+                        <!-- Nome Attività -->
+                        <div>
+                            <label data-i18n="label_business" class="block text-xs font-bold tracking-wide uppercase text-slate-500 dark:text-slate-400 mb-2">Nome Attività</label>
+                            <input type="text" required name="business" class="w-full px-4 py-3.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 dark:focus:border-indigo-400 rounded-xl outline-none text-sm transition-all text-slate-900 dark:text-white font-medium">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Email -->
+                        <div>
+                            <label data-i18n="label_email" class="block text-xs font-bold tracking-wide uppercase text-slate-500 dark:text-slate-400 mb-2">Indirizzo Email</label>
+                            <input type="email" required name="email" class="w-full px-4 py-3.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 dark:focus:border-indigo-400 rounded-xl outline-none text-sm transition-all text-slate-900 dark:text-white font-medium">
+                        </div>
+                        <!-- Telefono -->
+                        <div>
+                            <label data-i18n="label_phone" class="block text-xs font-bold tracking-wide uppercase text-slate-500 dark:text-slate-400 mb-2">Numero di Telefono</label>
+                            <input type="tel" required name="phone" class="w-full px-4 py-3.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 dark:focus:border-indigo-400 rounded-xl outline-none text-sm transition-all text-slate-900 dark:text-white font-medium">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Progetto di Interesse -->
+                        <div>
+                            <label data-i18n="label_project" class="block text-xs font-bold tracking-wide uppercase text-slate-500 dark:text-slate-400 mb-2">Progetto / Città</label>
+                            <select name="project" class="w-full px-4 py-3.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 dark:focus:border-indigo-400 rounded-xl outline-none text-sm transition-all text-slate-900 dark:text-white font-semibold">
+                                <option value="bordighera">Bordighera</option>
+                                <option value="vallecrosia">Vallecrosia</option>
+                                <option value="new_city" data-i18n="opt_new_city">Proponi un altro comune d'Italia</option>
+                            </select>
+                        </div>
+                        <!-- Pacchetto Selezionato -->
+                        <div>
+                            <label data-i18n="label_tier" class="block text-xs font-bold tracking-wide uppercase text-slate-500 dark:text-slate-400 mb-2">Livello Sponsorizzazione</label>
+                            <select id="tier-select" name="tier" class="w-full px-4 py-3.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 dark:focus:border-indigo-400 rounded-xl outline-none text-sm transition-all text-slate-900 dark:text-white font-semibold">
+                                <option value="bronze" data-i18n="opt_bronze">Bronzo (180€ / anno)</option>
+                                <option value="silver" data-i18n="opt_silver">Argento (380€ / anno)</option>
+                                <option value="gold" data-i18n="opt_gold">Oro (580€ / anno)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Messaggio opzionale -->
+                    <div>
+                        <label data-i18n="label_msg" class="block text-xs font-bold tracking-wide uppercase text-slate-500 dark:text-slate-400 mb-2">Messaggio o Domande Speciali</label>
+                        <textarea name="message" rows="4" class="w-full px-4 py-3.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 dark:focus:border-indigo-400 rounded-xl outline-none text-sm transition-all text-slate-900 dark:text-white font-medium"></textarea>
+                    </div>
+
+                    <!-- Pulsante invio -->
+                    <button type="submit" data-i18n="form_submit" class="w-full py-4 bg-gradient-to-tr from-indigo-600 to-violet-500 hover:from-indigo-700 hover:to-violet-600 text-white font-extrabold text-sm rounded-xl transition-all shadow-xl shadow-indigo-600/25">
+                        Invia la Candidatura
+                    </button>
+                </form>
+
+                <!-- Messaggio di Feedback di successo -->
+                <div id="feedback-message" class="hidden absolute inset-0 bg-white dark:bg-slate-900 flex flex-col items-center justify-center text-center p-8 z-20">
+                    <div class="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950/50 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-6">
+                        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <h3 data-i18n="feedback_title" class="text-2xl font-extrabold text-slate-950 dark:text-white">Richiesta Ricevuta!</h3>
+                    <p data-i18n="feedback_desc" class="text-sm text-slate-600 dark:text-slate-400 max-w-sm mt-2">Grazie per averci contattato. Uno dei nostri responsabili analizzerà la tua richiesta e ti risponderà il prima possibile.</p>
+                    <button onclick="resetSponsorForm()" data-i18n="feedback_back" class="mt-6 px-6 py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold text-xs rounded-xl transition-all">Invia una nuova candidatura</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span data-i18n="faq_sub" class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase">Dubbi o Domande</span>
+                <h2 data-i18n="faq_title" class="text-3xl font-extrabold tracking-tight mt-3 text-slate-950 dark:text-white">Domande Frequenti</h2>
+            </div>
+
+            <!-- Accordion FAQ -->
+            <div class="space-y-4">
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/60 dark:border-slate-800/80 overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(1)" class="w-full p-6 text-left flex items-center justify-between text-slate-900 dark:text-white font-bold text-base hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
+                        <span data-i18n="faq1_q">È necessario scaricare un'app dallo store?</span>
+                        <svg id="faq1-icon" class="w-5 h-5 text-slate-400 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    </button>
+                    <div id="faq1-a" class="hidden px-6 pb-6 text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-800/40 pt-4">
+                        <span data-i18n="faq1_a">No. Urban Quest è una Web App ottimizzata per dispositivi mobili. Funziona direttamente dal browser dello smartphone semplicemente accedendo al link o scansionando un codice QR posizionato nel comune.</span>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/60 dark:border-slate-800/80 overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(2)" class="w-full p-6 text-left flex items-center justify-between text-slate-900 dark:text-white font-bold text-base hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
+                        <span data-i18n="faq2_q">Come viene validato lo scatto fotografico?</span>
+                        <svg id="faq2-icon" class="w-5 h-5 text-slate-400 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    </button>
+                    <div id="faq2-a" class="hidden px-6 pb-6 text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-800/40 pt-4">
+                        <span data-i18n="faq2_a">Il sistema controlla le coordinate GPS dello smartphone al momento dello scatto per confermare la vicinanza reale al punto di interesse, consentendo il progresso immediato della quest.</span>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/60 dark:border-slate-800/80 overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(3)" class="w-full p-6 text-left flex items-center justify-between text-slate-900 dark:text-white font-bold text-base hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
+                        <span data-i18n="faq3_q">La mia attività può essere inserita in più città?</span>
+                        <svg id="faq3-icon" class="w-5 h-5 text-slate-400 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    </button>
+                    <div id="faq3-a" class="hidden px-6 pb-6 text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-800/40 pt-4">
+                        <span data-i18n="faq3_a">Assolutamente sì. Nel form di candidatura puoi segnalare la tua preferenza e concordare una presenza multi-comune basata sulle aree di attivazione dei nostri percorsi d'avventura.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Redirection Simulation Modal -->
+    <div id="redirection-modal" class="hidden fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-6">
+        <div class="bg-white dark:bg-slate-900 rounded-[32px] border border-slate-200 dark:border-slate-800 p-8 max-w-md w-full space-y-6 shadow-2xl relative text-center">
+            
+            <!-- Close Button -->
+            <button onclick="closeRedirection()" class="absolute top-6 right-6 p-2 rounded-xl border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 transition-all">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+
+            <!-- Loader Icon / Graphics -->
+            <div class="mx-auto w-20 h-20 relative flex items-center justify-center">
+                <div class="absolute inset-0 rounded-full border-4 border-indigo-100 dark:border-indigo-950"></div>
+                <div class="absolute inset-0 rounded-full border-4 border-indigo-600 border-t-transparent animate-spin"></div>
+                <svg class="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 009 11M13 11c0 3.517 1.009 6.799 2.753 9.571m3.44-2.04l-.054-.09A13.916 13.916 0 0015 11M11 5V3m0 2V4m0 16v-1m0 1H9m2 0h2" />
+                </svg>
+            </div>
+
+            <!-- Header Text -->
+            <div>
+                <span class="px-2.5 py-1 bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 text-[10px] font-bold rounded uppercase tracking-wider">Multi-Tenant Routing</span>
+                <h3 id="redir-title" class="text-xl font-extrabold text-slate-950 dark:text-white mt-3">Caricamento Quest...</h3>
+                <p id="redir-desc" class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">Ti stiamo reindirizzando all'applicazione standalone per questo comune.</p>
+            </div>
+
+            <!-- Target Domain Mockup -->
+            <div class="p-3 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200/60 dark:border-slate-800/50 flex items-center justify-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span id="target-url-label" class="text-xs font-bold text-indigo-600 dark:text-indigo-400 tracking-tight"></span>
+            </div>
+
+            <!-- Actions / Direct Navigation link -->
+            <div class="space-y-3 pt-2">
+                <button id="modal-launch-btn" onclick="openTargetQuest()" class="w-full py-3.5 bg-gradient-to-tr from-indigo-600 to-violet-500 hover:from-indigo-700 hover:to-violet-600 text-white font-extrabold text-xs rounded-xl transition-all shadow-lg shadow-indigo-600/20 flex items-center justify-center gap-2">
+                    <span data-i18n="modal_launch_btn">Accedi Ora (Senza Installazione)</span>
+                </button>
+                <div class="text-[10px] text-slate-400 dark:text-slate-500">
+                    <span data-i18n="modal_name_warning font-medium">Nome e nickname verranno richiesti all'ingresso.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map Info Simulation Modal -->
+    <div id="simulation-modal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-6">
+        <div class="bg-white dark:bg-slate-900 rounded-[32px] border border-slate-200 dark:border-slate-800 p-8 max-w-lg w-full space-y-6 shadow-2xl relative">
+            <button onclick="closeSimulation()" class="absolute top-6 right-6 p-2 rounded-xl border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 transition-all">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+            <div>
+                <span class="px-2 py-0.5 bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 text-[10px] font-bold rounded uppercase tracking-wider">Simulation Interface</span>
+                <h3 id="modal-city-title" class="text-2xl font-extrabold text-slate-950 dark:text-white mt-2">Bordighera Quest</h3>
+                <p id="modal-city-desc" class="text-sm text-slate-600 dark:text-slate-400 mt-2">Dettaglio del percorso di esplorazione.</p>
+            </div>
+            
+            <div class="p-4 bg-slate-50 dark:bg-slate-950 rounded-2xl border border-slate-200/50 dark:border-slate-800/50 space-y-3">
+                <span class="text-xs font-bold text-indigo-500 uppercase tracking-widest" data-i18n="modal_points">Principali Punti di Interesse (POI)</span>
+                <ul id="poi-list" class="space-y-2 text-xs font-medium text-slate-700 dark:text-slate-300">
+                    <!-- Dynamic items loaded based on city selection -->
+                </ul>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="#sponsor-form-section" onclick="closeSimulation()" class="flex-1 py-3 text-center bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl transition-all shadow-md shadow-indigo-600/10">
+                    Supporta come Sponsor
+                </a>
+                <button onclick="closeSimulation()" class="flex-1 py-3 text-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold text-xs rounded-xl transition-all">
+                    Chiudi Anteprima
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-950/50">
+        <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="flex items-center gap-3">
+                <div class="p-1 w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-extrabold text-sm">
+                    <img src="https://img.icons8.com/?size=100&id=tH0uJjgya4ce&format=png&color=FFFFFF">
+                </div>
+                <span class="text-md font-bold tracking-tight text-slate-900 dark:text-white">Urban Quest</span>
+            </div>
+            
+            <span data-i18n="footer_copy" class="text-xs text-slate-500 dark:text-slate-400">© 2026 Urban Quest. Tutti i diritti riservati. Soluzione di marketing turistico per comuni italiani.</span>
+
+            <div class="flex items-center gap-6">
+                <a href="#how-it-works" class="text-xs text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 transition-colors">Privacy Policy</a>
+                <a href="#sponsors" class="text-xs text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 transition-colors">Sponsorships</a>
+            </div>
+        </div>
+    </footer>
+
+<script src="app.js"></script>
+</body>
+</html>
