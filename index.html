@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- SEO Optimization -->
-    <title>Urban Quest | Esplora la Città Attraverso il Gioco</title>
-    <meta name="description" content="Trasforma la tua visita in un'avventura interattiva. Urban Quest ti guida tra i segreti di Bordighera, Vallecrosia e altre città d'Italia attraverso la geolocalizzazione.">
-    <meta name="keywords" content="Urban Quest, turismo interattivo, giochi di geolocalizzazione, Bordighera quest, Vallecrosia turismo, esplorazione urbana, gamification turismo">
+    <title>Urban Quest | Piattaforma di Proximity Marketing e Turismo Gamificato</title>
+    <meta name="description" content="Urban Quest è l'infrastruttura digitale che fonde turismo esperienziale, valorizzazione culturale e proximity marketing. Trasformiamo le città in tabelloni di gioco a cielo aperto.">
+    <meta name="keywords" content="Urban Quest, proximity marketing, turismo gamificato, gamification turismo, drive-to-store, Bordighera, turismo esperienziale, smart city, DMC">
     <meta name="robots" content="index, follow">
-    
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://urbanquest.it/">
-    <meta property="og:title" content="Urban Quest | Esplora la Città Attraverso il Gioco">
-    <meta property="og:description" content="Visita punti di interesse storici, supera le tappe e completa le sfide scattando foto reali del tuo percorso.">
+    <meta property="og:title" content="Urban Quest | Proximity Marketing e Turismo Gamificato">
+    <meta property="og:description" content="L'infrastruttura digitale che fonde turismo esperienziale, valorizzazione culturale e proximity marketing. Trasformiamo le città in tabelloni di gioco a cielo aperto.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1200&h=630&q=80">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://urbanquest.it/">
-    <meta property="twitter:title" content="Urban Quest | Esplora la Città Attraverso il Gioco">
-    <meta property="twitter:description" content="Visita punti di interesse storici, supera le tappe e completa le sfide scattando foto reali del tuo percorso.">
+    <meta property="twitter:title" content="Urban Quest | Proximity Marketing e Turismo Gamificato">
+    <meta property="twitter:description" content="L'infrastruttura digitale che fonde turismo esperienziale, valorizzazione culturale e proximity marketing.">
     <meta property="twitter:image" content="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1200&h=630&q=80">
 
     <!-- Fonts & Icons -->
@@ -29,31 +28,44 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Favicon & PWA  -->
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/logo.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="icons/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/logo.png">
+    <link rel="mask-icon" href="icons/icon-192-maskable.png" color="#4f46e5">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4f46e5">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Urban Quest">
+    <meta name="mobile-web-app-capable" content="yes">
     <script>
         tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    },
-                    animation: {
-                        'marquee': 'marquee 25s linear infinite',
-                        'marquee-reverse': 'marquee-reverse 25s linear infinite',
-                    },
-                    keyframes: {
-                        marquee: {
-                            '0%': { transform: 'translateX(0%)' },
-                            '100%': { transform: 'translateX(-50%)' },
-                        },
-                        'marquee-reverse': {
-                            '0%': { transform: 'translateX(-50%)' },
-                            '100%': { transform: 'translateX(0%)' },
-                        }
-                    }
+    darkMode: 'class',
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ['Plus Jakarta Sans', 'sans-serif'],
+            },
+            animation: {
+                'marquee': 'marquee 25s linear infinite',
+                'marquee-reverse': 'marquee-reverse 25s linear infinite',
+            },
+            keyframes: {
+                marquee: {
+                    '0%': { transform: 'translateX(0%)' },
+                    '100%': { transform: 'translateX(-50%)' },
+                },
+                // Corretto: aggiunto le virgolette alla chiave
+                'marquee-reverse': {
+                    '0%': { transform: 'translateX(-50%)' },
+                    '100%': { transform: 'translateX(0%)' },
                 }
             }
         }
+    }
+}
     </script>
     <style>
         .custom-scrollbar::-webkit-scrollbar {
@@ -91,24 +103,200 @@
             100% { transform: scale(2.4); opacity: 0; }
         }
         .gps-pulse-ring { animation: gps-pulse 2s ease-out infinite; }
+
+        /* ============================================================
+           URBAN QUEST — GAME BRANDING GRAPHIC SYSTEM
+           Decorative, non-textual elements that reinforce the
+           "treasure hunt across the city" atmosphere.
+           ============================================================ */
+
+        /* Dotted map pattern (light & dark aware via rgba) */
+        .map-dots-bg {
+            background-image: radial-gradient(rgba(99, 102, 241, 0.16) 1.3px, transparent 1.4px);
+            background-size: 22px 22px;
+        }
+        .dark .map-dots-bg {
+            background-image: radial-gradient(rgba(129, 140, 248, 0.14) 1.3px, transparent 1.4px);
+        }
+
+        /* Gentle vertical float for decorative pins */
+        @keyframes uq-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-14px); }
+        }
+        .uq-float { animation: uq-float 6s ease-in-out infinite; }
+
+        /* Pin bob (subtle, like a marker hanging on the map) */
+        @keyframes uq-pin-bob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-7px); }
+        }
+        .uq-pin-bob { animation: uq-pin-bob 3s ease-in-out infinite; }
+
+        /* Flowing dashes along a quest route */
+        @keyframes uq-dash-flow {
+            to { stroke-dashoffset: -32; }
+        }
+        .uq-route { stroke-dasharray: 5 9; animation: uq-dash-flow 1.4s linear infinite; }
+
+        /* Twinkle / sparkle */
+        @keyframes uq-sparkle {
+            0%, 100% { opacity: 0.25; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.15); }
+        }
+        .uq-sparkle { animation: uq-sparkle 2.6s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+
+        /* Compass needle sweep */
+        @keyframes uq-compass {
+            0%, 100% { transform: rotate(-14deg); }
+            50% { transform: rotate(14deg); }
+        }
+        .uq-compass-needle { animation: uq-compass 4.5s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+
+        /* Reward glow pulse */
+        @keyframes uq-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+            50% { box-shadow: 0 0 22px 4px rgba(245, 158, 11, 0.35); }
+        }
+        .uq-glow { animation: uq-glow 2.8s ease-in-out infinite; }
+
+        /* XP bar shimmer */
+        @keyframes uq-shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .uq-xp-fill {
+            background-image: linear-gradient(90deg, #6366f1 0%, #8b5cf6 30%, #f59e0b 55%, #8b5cf6 80%, #6366f1 100%);
+            background-size: 200% 100%;
+            animation: uq-shimmer 3s linear infinite;
+        }
+
+        /* Slow rotation (quest target rings, dashed halos) */
+        @keyframes uq-spin-slow { to { transform: rotate(360deg); } }
+        .uq-spin-slow { animation: uq-spin-slow 16s linear infinite; }
+        @keyframes uq-spin-reverse { to { transform: rotate(-360deg); } }
+        .uq-spin-reverse { animation: uq-spin-reverse 22s linear infinite; }
+
+        /* CTA attention pulse (Play Now) */
+        @keyframes uq-cta {
+            0%, 100% { box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.20); }
+            50% { box-shadow: 0 10px 22px 0px rgba(99, 102, 241, 0.55); }
+        }
+        .uq-cta-pulse { animation: uq-cta 2.6s ease-in-out infinite; }
+
+        /* HUD corner brackets — applied to a wrapper */
+        .uq-hud { position: relative; }
+        .uq-hud > .uq-corner {
+            position: absolute; width: 18px; height: 18px;
+            border-color: rgba(99, 102, 241, 0.55); pointer-events: none; z-index: 25;
+        }
+        .uq-hud > .uq-corner.tl { top: 10px; left: 10px; border-top: 2px solid; border-left: 2px solid; border-top-left-radius: 8px; }
+        .uq-hud > .uq-corner.tr { top: 10px; right: 10px; border-top: 2px solid; border-right: 2px solid; border-top-right-radius: 8px; }
+        .uq-hud > .uq-corner.bl { bottom: 10px; left: 10px; border-bottom: 2px solid; border-left: 2px solid; border-bottom-left-radius: 8px; }
+        .uq-hud > .uq-corner.br { bottom: 10px; right: 10px; border-bottom: 2px solid; border-right: 2px solid; border-bottom-right-radius: 8px; }
+
+        /* Drop shadow utility for floating pins */
+        .uq-pin-shadow { filter: drop-shadow(0 6px 8px rgba(15, 23, 42, 0.22)); }
+
+        /* Respect reduced-motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            .uq-float, .uq-pin-bob, .uq-route, .uq-sparkle, .uq-compass-needle,
+            .uq-glow, .uq-xp-fill, .uq-spin-slow, .uq-spin-reverse, .uq-cta-pulse {
+                animation: none !important;
+            }
+        }
     </style>
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Urban Quest",
-      "alternateName": "Urban Quest App",
-      "url": "https://urbanquest.it",
-      "applicationCategory": "TravelApplication",
-      "operatingSystem": "iOS, Android, Web Browser",
-      "description": "An interactive geolocation-based game transforming city sightseeing into an exploration quest.",
-      "offers": {
-        "@type": "Offer",
-        "price": "0.00",
-        "priceCurrency": "EUR"
-      }
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://urbanquest.it/#organization",
+          "name": "Urban Quest",
+          "alternateName": "Urban Quest Platform",
+          "url": "https://urbanquest.it",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://urbanquest.it/images/logo.png",
+            "width": 80,
+            "height": 80
+          },
+          "image": "https://urbanquest.it/images/logo.png",
+          "description": "L'infrastruttura digitale che fonde turismo esperienziale, valorizzazione culturale e proximity marketing. Trasformiamo le città in tabelloni di gioco a cielo aperto.",
+          "foundingDate": "2024",
+          "areaServed": {
+            "@type": "Place",
+            "name": "Riviera di Ponente, Italia"
+          },
+          "knowsAbout": [
+            "Proximity Marketing",
+            "Gamification",
+            "Turismo Esperienziale",
+            "Drive-to-Store",
+            "Smart City"
+          ],
+          "email": "h4shell@gmail.com",
+          "telephone": "+393481206604",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "partnerships",
+            "email": "h4shell@gmail.com",
+            "telephone": "+393481206604",
+            "url": "https://www.lorenzofornara.it",
+            "availableLanguage": ["Italian", "English", "French", "German"]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://urbanquest.it/#website",
+          "url": "https://urbanquest.it",
+          "name": "Urban Quest",
+          "description": "Piattaforma di Proximity Marketing e Turismo Gamificato.",
+          "inLanguage": ["it", "en", "fr", "de"],
+          "publisher": { "@id": "https://urbanquest.it/#organization" }
+        },
+        {
+          "@type": "WebApplication",
+          "@id": "https://urbanquest.it/#webapp",
+          "name": "Urban Quest",
+          "alternateName": "Urban Quest Platform",
+          "url": "https://urbanquest.it",
+          "applicationCategory": "TravelApplication",
+          "applicationSubCategory": "Gamified Tourism & Proximity Marketing",
+          "operatingSystem": "iOS, Android, Web Browser",
+          "browserRequirements": "Richiede geolocalizzazione e una connessione internet.",
+          "inLanguage": ["it", "en", "fr", "de"],
+          "isAccessibleForFree": true,
+          "offers": {
+            "@type": "Offer",
+            "price": "0.00",
+            "priceCurrency": "EUR",
+            "description": "L'esperienza di gioco è gratuita per i partecipanti."
+          },
+          "featureList": [
+            "Accesso istantaneo via QR Code",
+            "Mappa interattiva con punti di interesse (POI)",
+            "Caccia al tesoro con proof of visit fotografica",
+            "Reward e meccaniche di drive-to-store",
+            "Geolocalizzazione e geofencing",
+            "Dashboard analytics per sponsor ed enti"
+          ],
+          "about": {
+            "@type": "Place",
+            "name": "Bordighera",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Bordighera",
+              "addressRegion": "Liguria",
+              "addressCountry": "IT"
+            }
+          },
+          "publisher": { "@id": "https://urbanquest.it/#organization" }
+        }
+      ]
     }
     </script>
 </head>
@@ -118,8 +306,12 @@
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <!-- Logo -->
             <a href="#" class="flex items-center gap-3 group">
-                <div class="p-1 w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white font-extrabold shadow-lg shadow-indigo-500/20">
-                    <img src="https://img.icons8.com/?size=100&id=tH0uJjgya4ce&format=png&color=FFFFFF">
+                <div class="relative">
+                    <!-- Rotating quest-target ring -->
+                    <div class="absolute -inset-[7px] rounded-[18px] border border-dashed border-indigo-400/40 uq-spin-slow" aria-hidden="true"></div>
+                    <div class="p-1 w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white font-extrabold shadow-lg shadow-indigo-500/20">
+                        <img src="https://img.icons8.com/?size=100&id=tH0uJjgya4ce&format=png&color=FFFFFF">
+                    </div>
                 </div>
                 <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
                     Urban Quest
@@ -127,15 +319,16 @@
             </a>
 
             <!-- Desktop Nav -->
-            <nav class="hidden md:flex items-center gap-8">
+            <nav class="hidden lg:flex items-center gap-6">
                 <a href="#how-it-works" data-i18n="nav_how" class="text-sm font-medium text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Come funziona</a>
                 <a href="#cities" data-i18n="nav_cities" class="text-sm font-medium text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Le Città</a>
-                <a href="#sponsors" data-i18n="nav_sponsors" class="text-sm font-medium text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Sponsor</a>
-                <a href="#pricing" data-i18n="nav_pricing" class="text-sm font-medium text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Piani Partner</a>
+                <a href="#b2b" data-i18n="nav_b2b" class="text-sm font-medium text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Sponsor</a>
+                <a href="#b2g" data-i18n="nav_b2g" class="text-sm font-medium text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Enti & Turismo</a>
+                <a href="#roadmap" data-i18n="nav_roadmap" class="text-sm font-medium text-slate-600 hover:text-indigo-600 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors">Roadmap</a>
             </nav>
 
             <!-- Actions (Lang, Theme, CTA) -->
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3">
                 <!-- Language Switcher -->
                 <div class="relative inline-block text-left" id="lang-menu">
                     <button type="button" onclick="toggleLangDropdown()" class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
@@ -167,16 +360,18 @@
                 </button>
 
                 <!-- Hero CTA (Navbar) -->
-                <a href="#cities" data-i18n="cta_start" class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl transition-all shadow-md shadow-indigo-600/10">
-                    Esplora Ora
+                <a href="https://bordighera.urbanquest.it" data-i18n="cta_start" class="hidden sm:inline-flex items-center justify-center gap-1.5 px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl transition-all uq-cta-pulse">
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M6.3 2.84A1 1 0 005 3.73v12.54a1 1 0 001.3.9l11-6.27a1 1 0 000-1.78l-11-6.28z"/></svg>
+                    Play Now
                 </a>
             </div>
         </div>
     </header>
 
+    <!-- ================= HERO SECTION ================= -->
     <section class="relative pt-32 pb-24 overflow-hidden">
         <!-- Background Gradients -->
-        <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 z-0 map-dots-bg" style="-webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 40%, transparent 100%); mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 40%, transparent 100%);">
             <div class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl"></div>
             <div class="absolute top-60 -right-40 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl"></div>
         </div>
@@ -184,15 +379,16 @@
         <div class="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <!-- Left Info -->
             <div class="lg:col-span-7 flex flex-col justify-center text-center lg:text-left">
-                <span data-i18n="hero_badge" class="self-center lg:self-start inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 mb-6">
-                    Esplorazione urbana basata sulla geolocalizzazione
+                <span class="self-center lg:self-start inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 mb-6">
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8z" fill="currentColor"/><circle cx="12" cy="10" r="2.6" fill="#fff"/></svg>
+                    <span data-i18n="hero_badge">Proximity Marketing & Turismo Gamificato</span>
                 </span>
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
-                    <span data-i18n="hero_title_1" class="block text-slate-950 dark:text-white">Esplora la città</span>
-                    <span data-i18n="hero_title_2" class="block bg-gradient-to-r from-indigo-600 to-violet-500 bg-clip-text text-transparent">Attraverso il Gioco</span>
+                    <span data-i18n="hero_title_1" class="block text-slate-950 dark:text-white">Trasformiamo la città</span>
+                    <span data-i18n="hero_title_2" class="block bg-gradient-to-r from-indigo-600 to-violet-500 bg-clip-text text-transparent">in un ecosistema phygital</span>
                 </h1>
                 <p data-i18n="hero_desc" class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
-                    Urban Quest trasforma le storiche vie d'Italia in un'avventura interattiva a tappe. Scopri angoli nascosti, raggiungi gli obiettivi GPS e convalida il percorso scattando foto sul posto.
+                    Urban Quest è l'infrastruttura digitale che fonde turismo esperienziale, valorizzazione culturale e proximity marketing. Attraverso la gamification, trasformiamo le città in tabelloni di gioco a cielo aperto.
                 </p>
 
                 <!-- Modern Interactive Experience Selector Form -->
@@ -203,7 +399,6 @@
                             <div class="relative">
                                 <select id="hero-city-select" required class="w-full appearance-none px-4 py-3.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 dark:focus:border-indigo-400 rounded-2xl outline-none text-sm transition-all text-slate-900 dark:text-white font-semibold">
                                     <option value="Bordighera">Bordighera Quest</option>
-                                    <option value="Vallecrosia">Vallecrosia Quest</option>
                                 </select>
                                 <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
                                     <svg class="w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -222,20 +417,23 @@
                         </button>
                     </form>
                 </div>
-                
+
                 <!-- Quick stats -->
                 <div class="grid grid-cols-3 gap-6 pt-8 border-t border-slate-200 dark:border-slate-800 max-w-md mx-auto lg:mx-0">
                     <div>
-                        <div class="text-2xl font-extrabold text-indigo-600 dark:text-indigo-400">0</div>
-                        <div data-i18n="stat_cities" class="text-xs text-slate-500 dark:text-slate-400 mt-1">Città Attive</div>
+                        <div class="text-2xl font-extrabold text-indigo-600 dark:text-indigo-400">215k</div>
+                        <div data-i18n="stat_tourists" class="text-xs text-slate-500 dark:text-slate-400 mt-1">Turisti Intercettabili</div>
+                        <div class="h-1.5 rounded-full bg-slate-200/70 dark:bg-slate-800 mt-3 overflow-hidden"><div class="h-full rounded-full uq-xp-fill" style="width:82%"></div></div>
                     </div>
                     <div>
                         <div class="text-2xl font-extrabold text-indigo-600 dark:text-indigo-400">100%</div>
-                        <div data-i18n="stat_mobile" class="text-xs text-slate-500 dark:text-slate-400 mt-1">Mobile First</div>
+                        <div data-i18n="stat_mobile" class="text-xs text-slate-500 dark:text-slate-400 mt-1">Web-App</div>
+                        <div class="h-1.5 rounded-full bg-slate-200/70 dark:bg-slate-800 mt-3 overflow-hidden"><div class="h-full rounded-full uq-xp-fill" style="width:100%"></div></div>
                     </div>
                     <div>
-                        <div class="text-2xl font-extrabold text-indigo-600 dark:text-indigo-400">0+</div>
-                        <div data-i18n="stat_download" class="text-xs text-slate-500 dark:text-slate-400 mt-1">Senza Installazione</div>
+                        <div class="text-2xl font-extrabold text-indigo-600 dark:text-indigo-400">0</div>
+                        <div data-i18n="stat_download" class="text-xs text-slate-500 dark:text-slate-400 mt-1">Download Richiesti</div>
+                        <div class="h-1.5 rounded-full bg-slate-200/70 dark:bg-slate-800 mt-3 overflow-hidden"><div class="h-full rounded-full uq-xp-fill" style="width:92%"></div></div>
                     </div>
                 </div>
             </div>
@@ -246,26 +444,78 @@
                 <div class="absolute -right-10 top-10 w-48 h-48 bg-gradient-to-tr from-violet-500 to-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 dark:opacity-40 animate-pulse"></div>
                 <div class="absolute -left-10 bottom-10 w-48 h-48 bg-indigo-400 to-violet-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 dark:opacity-40 animate-pulse" style="animation-delay: 2s;"></div>
 
+                <!-- ===== GAME SCENE DECORATION ===== -->
+                <!-- Dotted quest route (behind phone) -->
+                <svg class="absolute inset-0 w-full h-full z-0 pointer-events-none hidden sm:block" viewBox="0 0 400 620" fill="none" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+                    <path class="uq-route" d="M30 120 C 130 70, 170 240, 250 210 S 370 360, 330 500" stroke="#6366f1" stroke-width="3.5" stroke-linecap="round" opacity="0.45"/>
+                    <circle cx="30" cy="120" r="7" fill="#10b981" opacity="0.9"/>
+                    <circle cx="250" cy="210" r="6" fill="#8b5cf6" opacity="0.8"/>
+                    <circle cx="330" cy="500" r="8" fill="#f59e0b" opacity="0.95"/>
+                </svg>
+
+                <!-- Floating map pins -->
+                <div class="absolute -top-3 -left-2 z-30 hidden sm:block text-indigo-500 uq-pin-bob uq-pin-shadow" style="animation-delay:.2s" aria-hidden="true">
+                    <svg width="34" height="46" viewBox="0 0 36 48" fill="none"><path d="M18 1C8.6 1 1 8.6 1 18c0 12.6 17 28 17 28s17-15.4 17-28C35 8.6 27.4 1 18 1z" fill="currentColor"/><circle cx="18" cy="18" r="6.5" fill="#fff"/></svg>
+                </div>
+                <div class="absolute top-24 -right-1 z-30 hidden sm:block text-amber-500 uq-pin-bob uq-pin-shadow" style="animation-delay:1.2s" aria-hidden="true">
+                    <svg width="30" height="40" viewBox="0 0 36 48" fill="none"><path d="M18 1C8.6 1 1 8.6 1 18c0 12.6 17 28 17 28s17-15.4 17-28C35 8.6 27.4 1 18 1z" fill="currentColor"/><path d="M18 11l1.8 4.2 4.5.4-3.4 3 1 4.4-3.9-2.3-3.9 2.3 1-4.4-3.4-3 4.5-.4z" fill="#fff"/></svg>
+                </div>
+                <div class="absolute bottom-16 -left-5 z-30 hidden sm:block text-violet-500 uq-pin-bob uq-pin-shadow" style="animation-delay:2.1s" aria-hidden="true">
+                    <svg width="28" height="38" viewBox="0 0 36 48" fill="none"><path d="M18 1C8.6 1 1 8.6 1 18c0 12.6 17 28 17 28s17-15.4 17-28C35 8.6 27.4 1 18 1z" fill="currentColor"/><circle cx="18" cy="18" r="6" fill="#fff"/></svg>
+                </div>
+
+                <!-- Compass rose -->
+                <div class="absolute -bottom-2 right-4 z-30 hidden sm:block text-indigo-500 uq-float" aria-hidden="true">
+                    <svg width="58" height="58" viewBox="0 0 60 60" fill="none">
+                        <circle cx="30" cy="30" r="28" stroke="currentColor" stroke-width="2" opacity="0.35"/>
+                        <circle cx="30" cy="30" r="22" stroke="currentColor" stroke-width="1" opacity="0.25" stroke-dasharray="2 4"/>
+                        <g class="uq-compass-needle">
+                            <path d="M30 9 L34.5 30 L25.5 30 Z" fill="#f43f5e"/>
+                            <path d="M30 51 L25.5 30 L34.5 30 Z" fill="#94a3b8"/>
+                        </g>
+                        <circle cx="30" cy="30" r="3" fill="currentColor"/>
+                    </svg>
+                </div>
+
+                <!-- Sparkles -->
+                <svg class="absolute top-20 left-6 w-4 h-4 text-amber-400 uq-sparkle z-30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.2 6.3L20.5 10l-6.3 2.2L12 18l-2.2-5.8L3.5 10l6.3-1.7z"/></svg>
+                <svg class="absolute bottom-28 right-8 w-3 h-3 text-indigo-400 uq-sparkle z-30" style="animation-delay:1s" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.2 6.3L20.5 10l-6.3 2.2L12 18l-2.2-5.8L3.5 10l6.3-1.7z"/></svg>
+                <svg class="absolute top-40 right-2 w-2.5 h-2.5 text-violet-400 uq-sparkle z-30" style="animation-delay:1.8s" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.2 6.3L20.5 10l-6.3 2.2L12 18l-2.2-5.8L3.5 10l6.3-1.7z"/></svg>
+
                 <!-- Modern Smartphone Frame -->
                 <div class="relative w-72 sm:w-80 aspect-[9/18] bg-slate-950 dark:bg-slate-900 rounded-[48px] p-3 shadow-2xl border-4 border-slate-200 dark:border-slate-800/80 ring-1 ring-slate-900/10 dark:ring-white/10 overflow-hidden group">
-                    <div class="w-full h-full rounded-[38px] overflow-hidden relative bg-slate-100 dark:bg-slate-950">
+                    <div class="w-full h-full rounded-[38px] overflow-hidden relative bg-slate-100 dark:bg-slate-950 uq-hud">
+                        <!-- HUD corner brackets -->
+                        <span class="uq-corner tl"></span>
+                        <span class="uq-corner tr"></span>
+                        <span class="uq-corner bl"></span>
+                        <span class="uq-corner br"></span>
                         <!-- Simulated Camera Notch -->
                         <div class="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-4 bg-slate-950 rounded-full z-30"></div>
-                        
+
                         <!-- Premium Travel/Navigation Photography -->
-                        <img src="images/screen1.png" 
-                             alt="Urban Quest App Interface Mockup" 
+                        <img src="images/screen1.png"
+                             alt="Urban Quest App Interface Mockup"
                              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                              onerror="this.src='https://placehold.co/800x1600/6366f1/ffffff?text=Urban+Quest+App'">
-                             
+
                         <!-- Elegant dark vignette reflection layer -->
                         <div class="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-black/20 pointer-events-none z-10"></div>
+
+                        <!-- Live GPS blip (user position) -->
+                        <div class="absolute z-20 bottom-28 right-7 pointer-events-none">
+                            <span class="relative flex h-3.5 w-3.5">
+                                <span class="absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-70 gps-pulse-ring"></span>
+                                <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-indigo-500 ring-2 ring-white shadow-lg"></span>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ================= MARQUEE / SPONSORS STRIP ================= -->
     <section class="py-10 bg-slate-100/50 dark:bg-slate-900/50 border-y border-slate-200/50 dark:border-slate-800/50 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 mb-4 flex justify-between items-center">
             <span data-i18n="marquee_title" class="text-xs font-bold tracking-widest text-slate-400 dark:text-slate-500 uppercase">I Nostri Sponsor e Partner Locali</span>
@@ -292,57 +542,76 @@
         </div>
     </section>
 
+    <!-- ================= HOW IT WORKS SECTION ================= -->
     <section id="how-it-works" class="py-24 relative">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-20">
-                <span data-i18n="how_sub" class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase">L'Esperienza Di Gioco</span>
-                <h2 data-i18n="how_title" class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-3 text-slate-950 dark:text-white">Come Funziona Urban Quest?</h2>
-                <p data-i18n="how_desc" class="text-slate-600 dark:text-slate-400 mt-4">Nessuna installazione complessa o registrazioni infinite. Accedi semplicemente dal tuo browser ed esplora immediatamente.</p>
+                <span data-i18n="how_sub" class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase">La User Experience</span>
+                <h2 data-i18n="how_title" class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-3 text-slate-950 dark:text-white">Come Funziona: Esperienza Frictionless</h2>
+                <p data-i18n="how_desc" class="text-slate-600 dark:text-slate-400 mt-4">L'architettura dell'esperienza è progettata per azzerare l'attrito e massimizzare il tasso di conversione verso gli sponsor.</p>
             </div>
 
             <!-- Steps Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+                <!-- Quest trail connector (desktop) -->
+                <div class="hidden lg:block absolute top-[60px] left-[12.5%] right-[12.5%] pointer-events-none z-0" aria-hidden="true">
+                    <svg class="w-full h-4" viewBox="0 0 100 4" preserveAspectRatio="none">
+                        <line x1="0" y1="2" x2="100" y2="2" stroke="#6366f1" stroke-width="1.5" class="uq-route" opacity="0.45"/>
+                    </svg>
+                </div>
                 <!-- Step 1 -->
                 <div class="relative bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 hover:shadow-xl transition-all duration-300">
+                    <div class="absolute top-5 right-5 text-indigo-200 dark:text-indigo-900" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="15" y="15" width="3" height="3" fill="currentColor"/></svg>
+                    </div>
                     <div class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-extrabold text-lg mb-6">
                         01
                     </div>
-                    <h3 data-i18n="step1_title" class="text-lg font-bold text-slate-950 dark:text-white mb-2">Apri il Link</h3>
+                    <h3 data-i18n="step1_title" class="text-lg font-bold text-slate-950 dark:text-white mb-2">Accesso Istantaneo</h3>
                     <p data-i18n="step1_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Accedi alla mappa del comune semplicemente scansionando un codice QR in loco o aprendo il link della quest dedicata.
+                        Nessun download, nessun account obbligatorio. Inquadra un QR Code in città o clicca un link social, inserisci il nome e vieni proiettato nella mappa di gioco.
                     </p>
                 </div>
 
                 <!-- Step 2 -->
                 <div class="relative bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 hover:shadow-xl transition-all duration-300">
+                    <div class="absolute top-5 right-5 text-indigo-200 dark:text-indigo-900" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg>
+                    </div>
                     <div class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-extrabold text-lg mb-6">
                         02
                     </div>
-                    <h3 data-i18n="step2_title" class="text-lg font-bold text-slate-950 dark:text-white mb-2">Inserisci il Nome</h3>
+                    <h3 data-i18n="step2_title" class="text-lg font-bold text-slate-950 dark:text-white mb-2">Esplorazione Guidata</h3>
                     <p data-i18n="step2_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Inserisci un nickname temporaneo direttamente nella pagina di atterraggio. Sei subito pronto per iniziare l'avventura.
+                        Una mappa interattiva costellata di POI storici, culturali e commerciali. La geolocalizzazione ti guida verso la prossima Quest.
                     </p>
                 </div>
 
                 <!-- Step 3 -->
                 <div class="relative bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 hover:shadow-xl transition-all duration-300">
+                    <div class="absolute top-5 right-5 text-indigo-200 dark:text-indigo-900" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 9a2 2 0 012-2h2l1.2-1.8A2 2 0 019.6 4h4.8a2 2 0 011.4.8L17 7h2a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><circle cx="12" cy="13" r="3"/></svg>
+                    </div>
                     <div class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-extrabold text-lg mb-6">
                         03
                     </div>
-                    <h3 data-i18n="step3_title" class="text-lg font-bold text-slate-950 dark:text-white mb-2">Trova i POI sulla Mappa</h3>
+                    <h3 data-i18n="step3_title" class="text-lg font-bold text-slate-950 dark:text-white mb-2">La Caccia al Tesoro</h3>
                     <p data-i18n="step3_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Segui la mappa integrata con il tuo GPS. Visita attrazioni culturali e monumenti, inclusi punti speciali sponsorizzati.
+                        Raggiunto il POI, si sblocca la sfida: scatta una foto specifica. Questo garantisce che tu sia fisicamente nel luogo.
                     </p>
                 </div>
 
                 <!-- Step 4 -->
                 <div class="relative bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 hover:shadow-xl transition-all duration-300">
+                    <div class="absolute top-5 right-5 text-amber-300 dark:text-amber-700" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M7 4h10v5a5 5 0 01-10 0V4z"/><path d="M7 6H4.5v1.5A3.5 3.5 0 007 11M17 6h2.5v1.5A3.5 3.5 0 0117 11M9.5 20h5M12 14.5V20"/></svg>
+                    </div>
                     <div class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400 font-extrabold text-lg mb-6">
                         04
                     </div>
-                    <h3 data-i18n="step4_title" class="text-lg font-bold text-slate-950 dark:text-white mb-2">Scatta la Foto</h3>
+                    <h3 data-i18n="step4_title" class="text-lg font-bold text-slate-950 dark:text-white mb-2">Reward & Drive-to-Store</h3>
                     <p data-i18n="step4_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                        Una volta sul posto, scatta una foto per dimostrare la visita, completa la quest e sblocca il premio finale.
+                        Completa il percorso e sblocca il Reward. Per riscuoterlo devi recarti presso l'attività partner: il gioco diventa vendita.
                     </p>
                 </div>
             </div>
@@ -553,7 +822,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Reward Badge -->
+                                    <!-- RewardBadge -->
                                     <div class="w-full bg-gradient-to-r from-amber-500/30 to-yellow-500/30 backdrop-blur-sm rounded-2xl p-2.5 border border-yellow-400/30 mb-4">
                                         <div class="flex items-center gap-2">
                                             <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-400 to-yellow-500 flex items-center justify-center shrink-0">
@@ -584,14 +853,91 @@
             </div>
         </div>
     </section>
-    <!-- ================= END APP SHOWCASE SECTION ================= -->
 
-    <section id="cities" class="py-24 bg-slate-100/30 dark:bg-slate-900/10 border-t border-b border-slate-200/50 dark:border-slate-800/50">
+    <!-- ================= VALUE PROPOSITION SECTION ================= -->
+    <section id="value" class="py-24 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-20">
-                <span data-i18n="cities_sub" class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase">Le Destinazioni Attive</span>
-                <h2 data-i18n="cities_title" class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-3 text-slate-950 dark:text-white">Dove puoi iniziare la tua Quest?</h2>
-                <p data-i18n="cities_desc" class="text-slate-600 dark:text-slate-400 mt-4">Scopri i primi comuni che hanno adottato la nostra piattaforma per regalare un'esperienza interattiva unica a residenti e turisti.</p>
+                <span data-i18n="value_sub" class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase">Il Valore</span>
+                <h2 data-i18n="value_title" class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-3 text-slate-950 dark:text-white">Non una guida turistica. Un ecosistema phygital.</h2>
+                <p data-i18n="value_desc" class="text-slate-600 dark:text-slate-400 mt-4">Un'esperienza web-based, frictionless e immediata che risolve due grandi problemi del turismo locale.</p>
+            </div>
+
+            <!-- Value Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- For the Visitor -->
+                <div class="relative bg-gradient-to-br from-indigo-50 to-white dark:from-indigo-950/30 dark:to-slate-900 p-10 rounded-[32px] border border-indigo-100 dark:border-indigo-900/50">
+                    <div class="w-14 h-14 rounded-2xl bg-indigo-600 flex items-center justify-center text-white mb-6 shadow-lg shadow-indigo-600/20">
+                        <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h3 data-i18n="value_visitor_title" class="text-2xl font-extrabold text-slate-950 dark:text-white mb-3">Per il Visitatore</h3>
+                    <p data-i18n="value_visitor_desc" class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Supera la passività del turismo 'mordi e fuggi', creando connessione emotiva, scoperta attiva e ricordi condivisibili (Instagrammable).
+                    </p>
+                </div>
+
+                <!-- For the Merchant -->
+                <div class="relative bg-gradient-to-br from-violet-50 to-white dark:from-violet-950/30 dark:to-slate-900 p-10 rounded-[32px] border border-violet-100 dark:border-violet-900/50">
+                    <div class="w-14 h-14 rounded-2xl bg-violet-600 flex items-center justify-center text-white mb-6 shadow-lg shadow-violet-600/20">
+                        <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                    </div>
+                    <h3 data-i18n="value_merchant_title" class="text-2xl font-extrabold text-slate-950 dark:text-white mb-3">Per il Commerciante</h3>
+                    <p data-i18n="value_merchant_desc" class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Genera un flusso pedonale qualificato e misurabile, abbattendo i costi di acquisizione cliente (CAC) e portando le persone fisicamente in negozio.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CITIES / CASE STUDY SECTION ================= -->
+    <section id="cities" class="py-24 bg-slate-100/30 dark:bg-slate-900/10 border-t border-b border-slate-200/50 dark:border-slate-800/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span data-i18n="cities_sub" class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase">Case Study: Bordighera</span>
+                <h2 data-i18n="cities_title" class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-3 text-slate-950 dark:text-white">Un laboratorio ideale sulla Riviera dei Fiori</h2>
+                <p data-i18n="cities_desc" class="text-slate-600 dark:text-slate-400 mt-4">Bordighera rappresenta il modello perfetto: alta vocazione turistica con bisogno di destagionalizzazione e distribuzione dei flussi.</p>
+            </div>
+
+            <!-- Big stat banner -->
+            <div class="max-w-4xl mx-auto mb-16 bg-gradient-to-r from-indigo-600 to-violet-600 rounded-[32px] p-10 text-center shadow-xl shadow-indigo-600/20">
+                <div class="text-5xl sm:text-6xl font-extrabold text-white mb-2">215.000</div>
+                <div data-i18n="case_stat_tourists" class="text-indigo-100 font-semibold text-sm uppercase tracking-wider">Turisti Potenziali Annui</div>
+            </div>
+
+            <!-- Macro-flows -->
+            <div class="max-w-5xl mx-auto mb-20">
+                <h3 data-i18n="case_flow_title" class="text-xl font-bold text-center text-slate-900 dark:text-white mb-10">I Tre Macro-Flussi Intercettabili</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/50 dark:border-slate-800/50">
+                        <div class="text-3xl mb-3">🇫🇷</div>
+                        <h4 data-i18n="case_flow1_title" class="font-bold text-slate-950 dark:text-white mb-2">Turismo di Prossimità</h4>
+                        <p data-i18n="case_flow1_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Francia e Costa Azzurra — target abituato alla micro-mobilità, ideale per gite 'mordi e fuggi' o weekend.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/50 dark:border-slate-800/50">
+                        <div class="text-3xl mb-3">🏡</div>
+                        <h4 data-i18n="case_flow2_title" class="font-bold text-slate-950 dark:text-white mb-2">Turismo Residenziale</h4>
+                        <p data-i18n="case_flow2_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Nord Italia — proprietari di seconde case, perfetti per ingaggiare la piattaforma in media/bassa stagione.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200/50 dark:border-slate-800/50">
+                        <div class="text-3xl mb-3">🚢</div>
+                        <h4 data-i18n="case_flow3_title" class="font-bold text-slate-950 dark:text-white mb-2">Turismo Crocieristico</h4>
+                        <p data-i18n="case_flow3_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Flussi anglosassoni e nordeuropei in cerca di autenticità e storie locali (Experiential Travel).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Digital Persona -->
+            <div class="max-w-4xl mx-auto mb-20 bg-white dark:bg-slate-900 rounded-[32px] border border-slate-200/60 dark:border-slate-800/80 p-8 sm:p-10 shadow-lg">
+                <div class="flex flex-col sm:flex-row items-start gap-6">
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                    </div>
+                    <div>
+                        <h3 data-i18n="persona_title" class="text-lg font-bold text-slate-950 dark:text-white mb-2">La Digital Persona</h3>
+                        <p data-i18n="persona_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">L'utente tipo non cerca solo un servizio, cerca un 'ricordo' e un contenuto condivisibile. È nativo digitale, sensibile agli incentivi ludici e propenso a deviare il proprio percorso fisico pur di ottenere una ricompensa.</p>
+                    </div>
+                </div>
             </div>
 
             <!-- Cities Grid -->
@@ -608,7 +954,7 @@
                     </div>
                     <div class="p-8 space-y-6">
                         <p data-i18n="city_1_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-                            Esplora l'iconica città delle palme, dalle spettacolari vedute sul mare del Sentiero di Sant'Ampelio alle incantevoli e strette vie storiche del borgo antico di Bordighera Alta.
+                            Esplora l'iconica città delle palme, dalle spettacolari vedute sul mare del Sentiero di Sant'Ampelio alle incantevoli e strette via storiche del borgo antico di Bordighera Alta.
                         </p>
                         <div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800/80 pt-6">
                             <div class="text-xs text-slate-500 dark:text-slate-400">
@@ -628,7 +974,7 @@
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
                         <div class="absolute bottom-6 left-6">
                             <span class="px-2.5 py-1 bg-indigo-600 text-white font-bold text-[10px] tracking-wider rounded uppercase">Liguria</span>
-                            <h3 class="text-2xl font-extrabold text-white mt-2">Vallecrosia</h3>
+                            <h3 class="text-2xl font-extrabold text-white mt-2">Vallecrosia - PROSSIMAMENTE</h3>
                         </div>
                     </div>
                     <div class="p-8 space-y-6">
@@ -637,9 +983,9 @@
                         </p>
                         <div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800/80 pt-6">
                             <div class="text-xs text-slate-500 dark:text-slate-400">
-                                <span class="font-bold text-slate-800 dark:text-white">4</span> <span data-i18n="poi_count">Tappe attive</span>
+                                <span class="font-bold text-slate-800 dark:text-white">?</span> <span data-i18n="poi_count">Tappe attive</span>
                             </div>
-                            <button onclick="simulateQuest('Vallecrosia')" data-i18n="btn_view_map" class="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:hover:bg-slate-100 dark:text-slate-900 font-bold text-xs rounded-xl transition-all shadow-sm">
+                            <button disabled onclick="simulateQuest('Vallecrosia')" data-i18n="btn_view_map" class="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:hover:bg-slate-100 dark:text-slate-900 font-bold text-xs rounded-xl transition-all shadow-sm opacity-50 cursor-not-allowed">
                                 Vedi Dettagli Mappa
                             </button>
                         </div>
@@ -649,6 +995,91 @@
         </div>
     </section>
 
+    <!-- ================= B2B VALUE PROPOSITION SECTION ================= -->
+    <section id="b2b" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span data-i18n="b2b_sub" class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase">Value Proposition B2B</span>
+                <h2 data-i18n="b2b_title" class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-3 text-slate-950 dark:text-white">Non compriamo spazi pubblicitari. Compriamo clienti in negozio.</h2>
+                <p data-i18n="b2b_desc" class="text-slate-600 dark:text-slate-400 mt-4">Perché un'attività commerciale dovrebbe investire in Urban Quest?</p>
+            </div>
+
+            <!-- B2B Value Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Drive to Store -->
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-6">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </div>
+                    <h3 data-i18n="b2b_p1_title" class="text-lg font-bold text-slate-950 dark:text-white mb-3">Drive-to-Store Reale</h3>
+                    <p data-i18n="b2b_p1_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">La Reward Mechanics obbliga il cliente a varcare la soglia del tuo negozio. Il premio è riscuotibile solo in loco: un giocatore diventa un lead qualificato.</p>
+                </div>
+
+                <!-- Geolocated Visibility -->
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-6">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+                    </div>
+                    <h3 data-i18n="b2b_p2_title" class="text-lg font-bold text-slate-950 dark:text-white mb-3">Visibilità Geolocalizzata</h3>
+                    <p data-i18n="b2b_p2_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Il tuo logo non è un banner ignorato: è un POI sulla mappa, cliccabile e interattivo. L'utente lo visualizza a pochi metri da te, nel momento di massima predisposizione all'acquisto.</p>
+                </div>
+
+                <!-- CAC Reduction -->
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-6">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                    </div>
+                    <h3 data-i18n="b2b_p3_title" class="text-lg font-bold text-slate-950 dark:text-white mb-3">Abbattimento del CAC</h3>
+                    <p data-i18n="b2b_p3_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Offrire un 'caffè omaggio' o uno sconto come premio costa una frazione rispetto a Meta/Google Ads, ma garantisce un tasso di conversione e un ricordo del brand esponenzialmente superiori.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CONVERSION SEGMENTS SECTION ================= -->
+    <section class="py-24 bg-slate-100/30 dark:bg-slate-900/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 data-i18n="conv_title" class="text-3xl font-extrabold tracking-tight text-slate-950 dark:text-white">Impatto sul Tessuto Commerciale Locale</h2>
+                <p data-i18n="conv_sub_desc" class="text-slate-600 dark:text-slate-400 mt-4">La gamification aiuta le botteghe storiche e la ristorazione di qualità a competere con le grandi catene.</p>
+            </div>
+
+            <!-- Segments Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Dining -->
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/50 dark:border-slate-800/50">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 data-i18n="conv_seg1_title" class="text-lg font-bold text-slate-950 dark:text-white">Ristorazione / Bar</h3>
+                        <span class="text-amber-500 text-lg" aria-hidden="true">★★★★★</span>
+                    </div>
+                    <div class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase mb-3" data-i18n="conv_seg1_rating">Altissimo</div>
+                    <p data-i18n="conv_seg1_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Drink di benvenuto o aperitivo in offerta al raggiungimento del POI adiacente.</p>
+                </div>
+
+                <!-- Retail -->
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/50 dark:border-slate-800/50">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 data-i18n="conv_seg2_title" class="text-lg font-bold text-slate-950 dark:text-white">Retail / Boutique</h3>
+                        <span class="text-amber-500 text-lg" aria-hidden="true">★★★★</span>
+                    </div>
+                    <div class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase mb-3" data-i18n="conv_seg2_rating">Alto</div>
+                    <p data-i18n="conv_seg2_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Sconto immediato del 15% o omaggio promozionale per incentivare l'ingresso (Footfall).</p>
+                </div>
+
+                <!-- Services -->
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/50 dark:border-slate-800/50">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 data-i18n="conv_seg3_title" class="text-lg font-bold text-slate-950 dark:text-white">Servizi / Noleggi</h3>
+                        <span class="text-amber-500 text-lg" aria-hidden="true">★★★</span>
+                    </div>
+                    <div class="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase mb-3" data-i18n="conv_seg3_rating">Medio</div>
+                    <p data-i18n="conv_seg3_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Coupon cumulabili per esperienze (es. noleggio bici, tour in barca).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SPONSORS / PRICING SECTION ================= -->
     <section id="sponsors" class="py-24 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-20">
@@ -661,109 +1092,105 @@
             <div id="pricing" class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
                 <!-- Bronze -->
                 <div class="bg-white dark:bg-slate-900 rounded-[32px] p-8 border border-slate-200/50 dark:border-slate-800/50 relative hover:shadow-xl transition-all flex flex-col justify-between">
+                    <!-- Medal -->
+                    <div class="absolute -top-5 right-7 uq-float uq-pin-shadow" aria-hidden="true">
+                        <svg width="42" height="42" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="#b45309"/><circle cx="22" cy="22" r="20" fill="none" stroke="#fcd34d" stroke-width="1.5" stroke-opacity="0.55"/><circle cx="22" cy="22" r="15" fill="none" stroke="#fff" stroke-opacity="0.25" stroke-width="1"/><path d="M22 12l2.2 5.4 5.8.5-4.4 3.7 1.3 5.7L22 25.2 17.1 27.8l1.3-5.7-4.4-3.7 5.8-.5z" fill="#fcd34d" opacity="0.9"/></svg>
+                    </div>
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <span class="px-3 py-1 bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-400 text-xs font-bold tracking-wide rounded-full uppercase" data-i18n="tier_bronze_title">Bronzo</span>
-                            <span class="text-slate-400 dark:text-slate-500 text-xs font-bold">180€ / anno</span>
+                            <span class="text-slate-400 dark:text-slate-500 text-xs font-bold">80€ / mese</span>
                         </div>
                         <p data-i18n="tier_bronze_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">Perfetto per iniziare ad apparire sulla mappa locale con logo e un banner dedicato.</p>
                         <ul class="space-y-4 mb-8">
                             <li class="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
-                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
+                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
                                 <span data-i18n="tier_b1">Presenza sulla mappa del comune</span>
                             </li>
                             <li class="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
-                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
+                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
                                 <span data-i18n="tier_b2">Logo aziendale personalizzato</span>
                             </li>
                             <li class="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
-                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
+                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
                                 <span data-i18n="tier_b3">Banner promozionale</span>
                             </li>
                         </ul>
                     </div>
-                    <a href="#sponsor-form-section" onclick="selectTier('bronze')" data-i18n="tier_cta" class="w-full py-3.5 text-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold text-sm rounded-xl transition-all">Scegli Bronzo</a>
+                    <a href="#sponsor-form-section" onclick="selectTier('bronze')" data-i18n="tier_cta" class="w-full py-3.5 text-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold text-sm rounded-xl transition-all">Scegli il Pacchetto</a>
                 </div>
 
                 <!-- Silver -->
                 <div class="bg-gradient-to-b from-indigo-500/10 to-indigo-500/0 dark:from-indigo-500/10 dark:to-transparent bg-white dark:bg-slate-900 rounded-[32px] p-8 border-2 border-indigo-500 relative hover:shadow-xl transition-all flex flex-col justify-between">
+                    <!-- Medal -->
+                    <div class="absolute -top-5 right-7 uq-float uq-pin-shadow" style="animation-delay:.8s" aria-hidden="true">
+                        <svg width="42" height="42" viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="#94a3b8"/><circle cx="22" cy="22" r="20" fill="none" stroke="#f1f5f9" stroke-width="1.5" stroke-opacity="0.6"/><circle cx="22" cy="22" r="15" fill="none" stroke="#fff" stroke-opacity="0.3" stroke-width="1"/><path d="M22 12l2.2 5.4 5.8.5-4.4 3.7 1.3 5.7L22 25.2 17.1 27.8l1.3-5.7-4.4-3.7 5.8-.5z" fill="#f1f5f9" opacity="0.95"/></svg>
+                    </div>
                     <div>
                         <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-indigo-600 text-white font-bold text-[10px] tracking-widest uppercase px-3 py-1 rounded-full" data-i18n="most_popular">Consigliato</div>
                         <div class="flex items-center justify-between mb-4">
                             <span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300 text-xs font-bold tracking-wide rounded-full uppercase" data-i18n="tier_silver_title">Argento</span>
-                            <span class="text-indigo-600 dark:text-indigo-400 text-xs font-bold">380€ / anno</span>
+                            <span class="text-indigo-600 dark:text-indigo-400 text-xs font-bold">135€ / mese</span>
                         </div>
                         <p data-i18n="tier_silver_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">Migliora le conversioni integrando azioni dirette, link al tuo sito web o promozioni.</p>
                         <ul class="space-y-4 mb-8">
                             <li class="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
-                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
+                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
                                 <span class="font-medium" data-i18n="tier_s1">Tutto incluso nel pacchetto Bronzo</span>
                             </li>
                             <li class="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
-                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
+                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
                                 <span data-i18n="tier_s2">Pulsante Call to Action personalizzato</span>
                             </li>
                             <li class="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
-                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
+                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
                                 <span data-i18n="tier_s3">Link diretto (Web/WhatsApp/Social)</span>
                             </li>
                         </ul>
                     </div>
-                    <a href="#sponsor-form-section" onclick="selectTier('silver')" data-i18n="tier_cta" class="w-full py-3.5 text-center bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm rounded-xl transition-all shadow-md shadow-indigo-600/10">Scegli Argento</a>
+                    <a href="#sponsor-form-section" onclick="selectTier('silver')" data-i18n="tier_cta" class="w-full py-3.5 text-center bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm rounded-xl transition-all shadow-md shadow-indigo-600/10">Scegli il Pacchetto</a>
                 </div>
 
                 <!-- Gold -->
                 <div class="bg-white dark:bg-slate-900 rounded-[32px] p-8 border border-slate-200/50 dark:border-slate-800/50 relative hover:shadow-xl transition-all flex flex-col justify-between">
+                    <!-- Medal (glowing) -->
+                    <div class="absolute -top-5 right-7 uq-float" style="animation-delay:1.4s" aria-hidden="true">
+                        <div class="absolute inset-0 rounded-full bg-amber-400/50 blur-md scale-110"></div>
+                        <svg class="relative" width="42" height="42" viewBox="0 0 44 44" style="filter:drop-shadow(0 4px 6px rgba(180,83,9,.45))"><circle cx="22" cy="22" r="20" fill="#d97706"/><circle cx="22" cy="22" r="20" fill="none" stroke="#fde687" stroke-width="1.5" stroke-opacity="0.7"/><circle cx="22" cy="22" r="15" fill="none" stroke="#fff" stroke-opacity="0.35" stroke-width="1"/><path d="M22 12l2.2 5.4 5.8.5-4.4 3.7 1.3 5.7L22 25.2 17.1 27.8l1.3-5.7-4.4-3.7 5.8-.5z" fill="#fde687"/></svg>
+                    </div>
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-950 text-yellow-800 dark:text-yellow-400 text-xs font-bold tracking-wide rounded-full uppercase" data-i18n="tier_gold_title">Oro</span>
-                            <span class="text-slate-400 dark:text-slate-500 text-xs font-bold">580€ / anno</span>
+                            <span class="text-slate-400 dark:text-slate-500 text-xs font-bold">800€ / anno</span>
                         </div>
                         <p data-i18n="tier_gold_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">Diventa parte essenziale del gioco come tappa obbligatoria del percorso cittadino.</p>
                         <ul class="space-y-4 mb-8">
                             <li class="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
-                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
+                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
                                 <span class="font-medium" data-i18n="tier_g1">Tutto incluso nel pacchetto Argento</span>
                             </li>
                             <li class="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
-                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
+                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
                                 <span class="font-semibold text-indigo-600 dark:text-indigo-400" data-i18n="tier_g2">Tappa fissa obbligatoria della quest</span>
                             </li>
                             <li class="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
-                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
+                                <svg class="w-5 h-5 text-indigo-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
                                 <span data-i18n="tier_g3">Traffico fisico diretto garantito all'attività</span>
                             </li>
                         </ul>
                     </div>
-                    <a href="#sponsor-form-section" onclick="selectTier('gold')" data-i18n="tier_cta" class="w-full py-3.5 text-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold text-sm rounded-xl transition-all">Scegli Oro</a>
+                    <a href="#sponsor-form-section" onclick="selectTier('gold')" data-i18n="tier_cta" class="w-full py-3.5 text-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold text-sm rounded-xl transition-all">Scegli il Pacchetto</a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ================= SPONSOR FORM SECTION ================= -->
     <section id="sponsor-form-section" class="py-24 bg-slate-100/50 dark:bg-slate-900/30 border-t border-slate-200/50 dark:border-slate-800/50">
         <div class="max-w-4xl mx-auto px-6">
             <div class="bg-white dark:bg-slate-900 rounded-[40px] border border-slate-200/60 dark:border-slate-800/80 shadow-2xl p-8 sm:p-12 relative overflow-hidden">
                 <div class="absolute -right-20 -top-20 w-60 h-60 bg-indigo-500/5 rounded-full blur-3xl"></div>
-                
+
                 <div class="text-center max-w-2xl mx-auto mb-12">
                     <h2 data-i18n="form_title" class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-950 dark:text-white">Diventa Sponsor e Unisciti a Noi</h2>
                     <p data-i18n="form_desc" class="text-sm text-slate-600 dark:text-slate-400 mt-2">Compila i campi sottostanti. Il nostro team ti contatterà entro 24 ore per finalizzare il posizionamento sulla mappa.</p>
@@ -810,9 +1237,9 @@
                         <div>
                             <label data-i18n="label_tier" class="block text-xs font-bold tracking-wide uppercase text-slate-500 dark:text-slate-400 mb-2">Livello Sponsorizzazione</label>
                             <select id="tier-select" name="tier" class="w-full px-4 py-3.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 dark:focus:border-indigo-400 rounded-xl outline-none text-sm transition-all text-slate-900 dark:text-white font-semibold">
-                                <option value="bronze" data-i18n="opt_bronze">Bronzo (180€ / anno)</option>
-                                <option value="silver" data-i18n="opt_silver">Argento (380€ / anno)</option>
-                                <option value="gold" data-i18n="opt_gold">Oro (580€ / anno)</option>
+                                <option value="bronze" data-i18n="opt_bronze">Bronzo (80€ / mese)</option>
+                                <option value="silver" data-i18n="opt_silver">Argento (135€ / mese)</option>
+                                <option value="gold" data-i18n="opt_gold">Oro (800€ / anno)</option>
                             </select>
                         </div>
                     </div>
@@ -821,6 +1248,17 @@
                     <div>
                         <label data-i18n="label_msg" class="block text-xs font-bold tracking-wide uppercase text-slate-500 dark:text-slate-400 mb-2">Messaggio o Domande Speciali</label>
                         <textarea name="message" rows="4" class="w-full px-4 py-3.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 dark:focus:border-indigo-400 rounded-xl outline-none text-sm transition-all text-slate-900 dark:text-white font-medium"></textarea>
+                    </div>
+
+                    <!-- Consenso Privacy Policy (Obbligatorio - GDPR) -->
+                    <div class="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800">
+                        <input type="checkbox" required id="privacy-consent" name="privacy_consent" value="accepted" class="mt-0.5 w-4 h-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 dark:bg-slate-900 dark:border-slate-700 cursor-pointer shrink-0">
+                        <label for="privacy-consent" class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed cursor-pointer">
+                            <span data-i18n="privacy_consent">Ho letto e accetto la</span>
+                            <button type="button" onclick="openPrivacy()" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline inline">Privacy Policy</button>
+                            <span data-i18n="privacy_consent_2">per il trattamento dei miei dati personali ai sensi del Regolamento UE 2016/679.</span>
+                            <span class="text-rose-500 font-bold">*</span>
+                        </label>
                     </div>
 
                     <!-- Pulsante invio -->
@@ -832,9 +1270,7 @@
                 <!-- Messaggio di Feedback di successo -->
                 <div id="feedback-message" class="hidden absolute inset-0 bg-white dark:bg-slate-900 flex flex-col items-center justify-center text-center p-8 z-20">
                     <div class="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-950/50 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-6">
-                        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                        </svg>
+                        <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
                     </div>
                     <h3 data-i18n="feedback_title" class="text-2xl font-extrabold text-slate-950 dark:text-white">Richiesta Ricevuta!</h3>
                     <p data-i18n="feedback_desc" class="text-sm text-slate-600 dark:text-slate-400 max-w-sm mt-2">Grazie per averci contattato. Uno dei nostri responsabili analizzerà la tua richiesta e ti risponderà il prima possibile.</p>
@@ -844,7 +1280,185 @@
         </div>
     </section>
 
-    <section class="py-24">
+    <!-- ================= B2G VALUE PROPOSITION SECTION ================= -->
+    <section id="b2g" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span data-i18n="b2g_sub" class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase">Value Proposition B2G</span>
+                <h2 data-i18n="b2g_title" class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-3 text-slate-950 dark:text-white">Per Enti Pubblici e DMC</h2>
+                <p data-i18n="b2g_desc" class="text-slate-600 dark:text-slate-400 mt-4">Perché Amministrazioni Comunali e Assessorati al Turismo dovrebbero promuovere Urban Quest?</p>
+            </div>
+
+            <!-- B2G Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-6">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+                    </div>
+                    <h3 data-i18n="b2g_p1_title" class="text-lg font-bold text-slate-950 dark:text-white mb-3">Decentralizzazione dei Flussi</h3>
+                    <p data-i18n="b2g_p1_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Incentivare i turisti a visitare quartieri meno battuti, alleviando la pressione sul centro storico e distribuendo la ricchezza su tutto il tessuto urbano.</p>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-6">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    </div>
+                    <h3 data-i18n="b2g_p2_title" class="text-lg font-bold text-slate-950 dark:text-white mb-3">Valorizzazione del Patrimonio</h3>
+                    <p data-i18n="b2g_p2_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Trasformare la storia locale in narrazione attiva, aumentando il tempo di permanenza medio in città (Dwell Time).</p>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-6">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                    </div>
+                    <h3 data-i18n="b2g_p3_title" class="text-lg font-bold text-slate-950 dark:text-white mb-3">Smart City & Data Analytics</h3>
+                    <p data-i18n="b2g_p3_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Dashboard esclusive con Heatmap dei flussi pedonali, orari di picco e zone d'ombra, utili per future pianificazioni urbanistiche e turistiche.</p>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 hover:shadow-xl transition-all duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-6">
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h3 data-i18n="b2g_p4_title" class="text-lg font-bold text-slate-950 dark:text-white mb-3">Destagionalizzazione</h3>
+                    <p data-i18n="b2g_p4_desc" class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Creare eventi a tema (Urban Quest di Natale, Quest dei Fiori in Primavera) per attrarre pubblico anche nei mesi di bassa stagione.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= DATA & ANALYTICS SECTION ================= -->
+    <section class="py-24 bg-slate-100/30 dark:bg-slate-900/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Left: Text -->
+                <div>
+                    <span data-i18n="data_sub" class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase">L'Asset Invisibile</span>
+                    <h2 data-i18n="data_title" class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-3 mb-4 text-slate-950 dark:text-white">Una piattaforma di raccolta dati comportamentali</h2>
+                    <p data-i18n="data_desc" class="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">Urban Quest non è solo un gioco. Nel pieno rispetto della GDPR, Enti e Consorzi possono monitorare:</p>
+
+                    <ul class="space-y-5">
+                        <li class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-950/50 flex items-center justify-center shrink-0">
+                                <svg class="w-4 h-4 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                            </div>
+                            <p data-i18n="data_m1" class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed pt-1">Tasso di Completamento — quali percorsi affascinano di più.</p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-950/50 flex items-center justify-center shrink-0">
+                                <svg class="w-4 h-4 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                            </div>
+                            <p data-i18n="data_m2" class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed pt-1">Tempi di Attraversamento — quanto tempo l'utente impiega per spostarsi da un POI all'altro.</p>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-950/50 flex items-center justify-center shrink-0">
+                                <svg class="w-4 h-4 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                            </div>
+                            <p data-i18n="data_m3" class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed pt-1">Tasso di Riscossione Premi — quale sponsor genera il maggior traffico reale.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Right: Analytics Dashboard Mockup -->
+                <div class="bg-white dark:bg-slate-900 rounded-[32px] p-8 border border-slate-200/50 dark:border-slate-800/50 shadow-xl">
+                    <div class="flex items-center justify-between mb-8">
+                        <div>
+                            <div class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Dashboard</div>
+                            <div class="text-lg font-extrabold text-slate-950 dark:text-white">Heatmap & Flows</div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">LIVE</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4 mb-6">
+                        <div class="bg-slate-50 dark:bg-slate-950 rounded-2xl p-4">
+                            <div class="text-2xl font-extrabold text-indigo-600 dark:text-indigo-400">87%</div>
+                            <div class="text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase mt-1">Completion</div>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-950 rounded-2xl p-4">
+                            <div class="text-2xl font-extrabold text-indigo-600 dark:text-indigo-400">42m</div>
+                            <div class="text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase mt-1">Dwell Time</div>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-950 rounded-2xl p-4">
+                            <div class="text-2xl font-extrabold text-indigo-600 dark:text-indigo-400">73%</div>
+                            <div class="text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase mt-1">Redemption</div>
+                        </div>
+                    </div>
+
+                    <!-- Simulated chart bars -->
+                    <div class="flex items-end justify-between gap-2 h-32 pt-4 border-t border-slate-100 dark:border-slate-800">
+                        <div class="flex-1 bg-indigo-500/80 rounded-t-lg" style="height: 45%"></div>
+                        <div class="flex-1 bg-indigo-500/80 rounded-t-lg" style="height: 70%"></div>
+                        <div class="flex-1 bg-indigo-500/80 rounded-t-lg" style="height: 55%"></div>
+                        <div class="flex-1 bg-indigo-600 rounded-t-lg" style="height: 95%"></div>
+                        <div class="flex-1 bg-indigo-500/80 rounded-t-lg" style="height: 80%"></div>
+                        <div class="flex-1 bg-indigo-500/80 rounded-t-lg" style="height: 65%"></div>
+                        <div class="flex-1 bg-indigo-500/80 rounded-t-lg" style="height: 40%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ROADMAP SECTION ================= -->
+    <section id="roadmap" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span data-i18n="roadmap_sub" class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase">Roadmap e Scalabilità</span>
+                <h2 data-i18n="roadmap_title" class="text-3xl sm:text-4xl font-extrabold tracking-tight mt-3 text-slate-950 dark:text-white">Dalla fase pilota all'espansione europea</h2>
+                <p data-i18n="roadmap_desc" class="text-slate-600 dark:text-slate-400 mt-4">Il progetto è operativo e validato. Il piano di espansione prevede tre fasi.</p>
+            </div>
+
+            <!-- Roadmap Timeline -->
+            <div class="relative max-w-4xl mx-auto">
+                <!-- Vertical line (desktop) -->
+                <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-slate-800 -translate-x-1/2"></div>
+
+                <div class="space-y-12">
+                    <!-- Phase 1 -->
+                    <div class="relative md:grid md:grid-cols-2 md:gap-12 items-center">
+                        <div class="md:text-right md:pr-12">
+                            <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 shadow-sm">
+                                <span class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase" data-i18n="roadmap_phase1_tag">Fase 1</span>
+                                <h3 class="text-lg font-bold text-slate-950 dark:text-white mt-2 mb-2" data-i18n="roadmap_phase1_title">Consolidamento</h3>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="roadmap_phase1_desc">Estensione della rete di sponsor locali e creazione di un network tra i comuni della Riviera.</p>
+                            </div>
+                        </div>
+                        <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-indigo-600 items-center justify-center text-white font-bold text-sm shadow-lg shadow-indigo-600/30">1</div>
+                    </div>
+
+                    <!-- Phase 2 -->
+                    <div class="relative md:grid md:grid-cols-2 md:gap-12 items-center">
+                        <div class="hidden md:block"></div>
+                        <div class="md:pl-12">
+                            <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 shadow-sm">
+                                <span class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase" data-i18n="roadmap_phase2_tag">Fase 2</span>
+                                <h3 class="text-lg font-bold text-slate-950 dark:text-white mt-2 mb-2" data-i18n="roadmap_phase2_title">Franchising Territoriale</h3>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="roadmap_phase2_desc">Licensing della piattaforma ad altre DMC, Pro Loco e Comuni in Italia e in Europa.</p>
+                            </div>
+                        </div>
+                        <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-indigo-600 items-center justify-center text-white font-bold text-sm shadow-lg shadow-indigo-600/30">2</div>
+                    </div>
+
+                    <!-- Phase 3 -->
+                    <div class="relative md:grid md:grid-cols-2 md:gap-12 items-center">
+                        <div class="md:text-right md:pr-12">
+                            <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/50 dark:border-slate-800/50 shadow-sm">
+                                <span class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase" data-i18n="roadmap_phase3_tag">Fase 3</span>
+                                <h3 class="text-lg font-bold text-slate-950 dark:text-white mt-2 mb-2" data-i18n="roadmap_phase3_title">Brand Integration</h3>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="roadmap_phase3_desc">Partnership con grandi brand nazionali per la creazione di 'Quest Sponsorizzate' tematiche.</p>
+                            </div>
+                        </div>
+                        <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-indigo-600 items-center justify-center text-white font-bold text-sm shadow-lg shadow-indigo-600/30">3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FAQ SECTION ================= -->
+    <section class="py-24 bg-slate-100/30 dark:bg-slate-900/10">
         <div class="max-w-4xl mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <span data-i18n="faq_sub" class="text-xs font-bold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase">Dubbi o Domande</span>
@@ -882,14 +1496,82 @@
                         <span data-i18n="faq3_a">Assolutamente sì. Nel form di candidatura puoi segnalare la tua preferenza e concordare una presenza multi-comune basata sulle aree di attivazione dei nostri percorsi d'avventura.</span>
                     </div>
                 </div>
+
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/60 dark:border-slate-800/80 overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(4)" class="w-full p-6 text-left flex items-center justify-between text-slate-900 dark:text-white font-bold text-base hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
+                        <span data-i18n="faq4_q">Come vengono gestiti i dati degli utenti?</span>
+                        <svg id="faq4-icon" class="w-5 h-5 text-slate-400 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    </button>
+                    <div id="faq4-a" class="hidden px-6 pb-6 text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-800/40 pt-4">
+                        <span data-i18n="faq4_a">Urban Quest raccoglie dati comportamentali in modo aggregato e nel pieno rispetto del GDPR. Non richiediamo account: l'accesso avviene tramite un nickname temporaneo.</span>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/60 dark:border-slate-800/80 overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(5)" class="w-full p-6 text-left flex items-center justify-between text-slate-900 dark:text-white font-bold text-base hover:bg-slate-50/50 dark:hover:bg-slate-800/30">
+                        <span data-i18n="faq5_q">Quanto costa partecipare a una Quest per i turisti?</span>
+                        <svg id="faq5-icon" class="w-5 h-5 text-slate-400 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    </button>
+                    <div id="faq5-a" class="hidden px-6 pb-6 text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-800/40 pt-4">
+                        <span data-i18n="faq5_a">L'esperienza è completamente gratuita per i visitatori. Nessun download, nessun costo: si accede direttamente dal browser.</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Redirection Simulation Modal -->
+    <!-- ================= CONTACT / FINAL CTA SECTION ================= -->
+    <section id="contact" class="py-24 relative overflow-hidden">
+        <!-- Background gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-indigo-600 to-violet-700"></div>
+        <div class="absolute inset-0 opacity-[0.18]" style="background-image: radial-gradient(rgba(255,255,255,0.8) 1.3px, transparent 1.4px); background-size: 26px 26px;" aria-hidden="true"></div>
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+            <!-- Floating quest markers -->
+            <div class="absolute -top-10 -left-2 sm:-left-10 text-white/90 uq-pin-bob hidden sm:block uq-pin-shadow" aria-hidden="true">
+                <svg width="30" height="40" viewBox="0 0 36 48" fill="none"><path d="M18 1C8.6 1 1 8.6 1 18c0 12.6 17 28 17 28s17-15.4 17-28C35 8.6 27.4 1 18 1z" fill="currentColor"/><circle cx="18" cy="18" r="6.5" fill="#4f46e5"/></svg>
+            </div>
+            <div class="absolute -bottom-8 -right-2 sm:-right-10 text-amber-300 uq-pin-bob hidden sm:block uq-pin-shadow" style="animation-delay:1.2s" aria-hidden="true">
+                <svg width="30" height="40" viewBox="0 0 36 48" fill="none"><path d="M18 1C8.6 1 1 8.6 1 18c0 12.6 17 28 17 28s17-15.4 17-28C35 8.6 27.4 1 18 1z" fill="currentColor"/><path d="M18 11l1.8 4.2 4.5.4-3.4 3 1 4.4-3.9-2.3-3.9 2.3 1-4.4-3.4-3 4.5-.4z" fill="#4f46e5"/></svg>
+            </div>
+            <svg class="absolute top-2 right-6 w-5 h-5 text-white/80 uq-sparkle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.2 6.3L20.5 10l-6.3 2.2L12 18l-2.2-5.8L3.5 10l6.3-1.7z"/></svg>
+            <svg class="absolute bottom-0 left-10 w-4 h-4 text-amber-200 uq-sparkle" style="animation-delay:1.4s" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.2 6.3L20.5 10l-6.3 2.2L12 18l-2.2-5.8L3.5 10l6.3-1.7z"/></svg>
+            <span data-i18n="contact_sub" class="inline-block text-xs font-bold tracking-widest text-indigo-100 uppercase mb-4">Unisciti alla Rivoluzione</span>
+            <h2 data-i18n="contact_title" class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-6">Unisciti alla Rivoluzione del Turismo Locale</h2>
+            <p data-i18n="contact_desc" class="text-base sm:text-lg text-indigo-100 max-w-2xl mx-auto mb-10 leading-relaxed">Urban Quest è il ponte digitale tra la bellezza del territorio e il commercio locale. Trasformiamo i visitatori di oggi nei clienti fedeli di domani.</p>
+
+            <!-- Contact links -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mb-10">
+                <a href="mailto:h4shell@gmail.com" class="flex items-center gap-2 text-indigo-50 hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    <span class="text-sm font-semibold">h4shell@gmail.com</span>
+                </a>
+                <a href="https://www.lorenzofornara.it" target="_blank" rel="noopener" class="flex items-center gap-2 text-indigo-50 hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                    <span class="text-sm font-semibold">www.lorenzofornara.it</span>
+                </a>
+                <a href="tel:+393481206604" class="flex items-center gap-2 text-indigo-50 hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                    <span class="text-sm font-semibold">+39 348 12 06 604</span>
+                </a>
+            </div>
+
+            <!-- CTA Button -->
+            <a href="mailto:h4shell@gmail.com?subject=Richiesta%20Demo%20Urban%20Quest" class="inline-flex items-center justify-center px-8 py-4 bg-white text-indigo-700 font-extrabold text-sm rounded-2xl transition-all shadow-2xl shadow-indigo-900/30 hover:scale-105">
+                <span data-i18n="contact_btn">Richiedi una Simulazione Gratuita</span>
+                <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- ================= REDIRECTION SIMULATION MODAL ================= -->
     <div id="redirection-modal" class="hidden fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-6">
         <div class="bg-white dark:bg-slate-900 rounded-[32px] border border-slate-200 dark:border-slate-800 p-8 max-w-md w-full space-y-6 shadow-2xl relative text-center">
-            
+
             <!-- Close Button -->
             <button onclick="closeRedirection()" class="absolute top-6 right-6 p-2 rounded-xl border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 transition-all">
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
@@ -899,9 +1581,7 @@
             <div class="mx-auto w-20 h-20 relative flex items-center justify-center">
                 <div class="absolute inset-0 rounded-full border-4 border-indigo-100 dark:border-indigo-950"></div>
                 <div class="absolute inset-0 rounded-full border-4 border-indigo-600 border-t-transparent animate-spin"></div>
-                <svg class="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 009 11M13 11c0 3.517 1.009 6.799 2.753 9.571m3.44-2.04l-.054-.09A13.916 13.916 0 0015 11M11 5V3m0 2V4m0 16v-1m0 1H9m2 0h2" />
-                </svg>
+                <svg class="w-8 h-8 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 009 11M13 11c0 3.517 1.009 6.799 2.753 9.571m3.44-2.04l-.054-.09A13.916 13.916 0 0015 11M11 5V3m0 2V4m0 16v-1m0 1H9m2 0h2" /></svg>
             </div>
 
             <!-- Header Text -->
@@ -929,7 +1609,7 @@
         </div>
     </div>
 
-    <!-- Map Info Simulation Modal -->
+    <!-- ================= MAP INFO SIMULATION MODAL ================= -->
     <div id="simulation-modal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-6">
         <div class="bg-white dark:bg-slate-900 rounded-[32px] border border-slate-200 dark:border-slate-800 p-8 max-w-lg w-full space-y-6 shadow-2xl relative">
             <button onclick="closeSimulation()" class="absolute top-6 right-6 p-2 rounded-xl border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 transition-all">
@@ -940,7 +1620,7 @@
                 <h3 id="modal-city-title" class="text-2xl font-extrabold text-slate-950 dark:text-white mt-2">Bordighera Quest</h3>
                 <p id="modal-city-desc" class="text-sm text-slate-600 dark:text-slate-400 mt-2">Dettaglio del percorso di esplorazione.</p>
             </div>
-            
+
             <div class="p-4 bg-slate-50 dark:bg-slate-950 rounded-2xl border border-slate-200/50 dark:border-slate-800/50 space-y-3">
                 <span class="text-xs font-bold text-indigo-500 uppercase tracking-widest" data-i18n="modal_points">Principali Punti di Interesse (POI)</span>
                 <ul id="poi-list" class="space-y-2 text-xs font-medium text-slate-700 dark:text-slate-300">
@@ -959,6 +1639,185 @@
         </div>
     </div>
 
+    <!-- ================= PRIVACY POLICY MODAL (GDPR) ================= -->
+    <div id="privacy-modal" class="hidden fixed inset-0 z-[60] bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6" onclick="if(event.target===this) closePrivacy()">
+        <div class="bg-white dark:bg-slate-900 rounded-[32px] border border-slate-200 dark:border-slate-800 max-w-3xl w-full max-h-[90vh] flex flex-col shadow-2xl relative">
+
+            <!-- Sticky Header -->
+            <div class="flex items-center justify-between p-6 border-b border-slate-200 dark:border-slate-800 shrink-0">
+                <div class="flex items-center gap-3 pr-8">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950 flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0">
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <div>
+                        <span class="px-2 py-0.5 bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 text-[10px] font-bold rounded uppercase tracking-wider">GDPR · UE 2016/679</span>
+                        <h3 class="text-lg font-extrabold text-slate-950 dark:text-white leading-tight mt-1">Privacy Policy</h3>
+                    </div>
+                </div>
+                <button onclick="closePrivacy()" class="absolute top-6 right-6 p-2 rounded-xl border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 transition-all" aria-label="Chiudi">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <!-- Scrollable Content -->
+            <div class="overflow-y-auto custom-scrollbar p-6 sm:p-8 space-y-6 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+
+                <p class="text-xs italic text-slate-400 dark:text-slate-500">Informativa resa ai sensi dell'art. 13 del Regolamento (UE) 2016/679 (GDPR). La presente informativa descrive le modalità di gestione del Soto in relazione al trattamento dei dati personali degli utenti.</p>
+
+                <!-- 1. Titolare -->
+                <section>
+                    <h4 class="text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs font-extrabold shrink-0">1</span>
+                        Titolare del Trattamento
+                    </h4>
+                    <p>Il Titolare del trattamento dei dati personali è:</p>
+                    <ul class="mt-2 space-y-1 font-medium text-slate-700 dark:text-slate-300">
+                        <li>• <strong>Urban Quest</strong></li>
+                        <li>• Email: <a href="mailto:h4shell@gmail.com" class="text-indigo-600 dark:text-indigo-400 hover:underline">h4shell@gmail.com</a></li>
+                        <li>• Telefono: <a href="tel:+393481206604" class="text-indigo-600 dark:text-indigo-400 hover:underline">+39 348 12 06 604</a></li>
+                        <li>• Sito web: <a href="https://www.lorenzofornara.it" target="_blank" rel="noopener" class="text-indigo-600 dark:text-indigo-400 hover:underline">www.lorenzofornara.it</a></li>
+                    </ul>
+                    <p class="mt-2">Per ogni richiesta relativa alla protezione dei dati personali, è possibile scrivere all'indirizzo email del Titolare. Il Titolare potrà avvalersi di un Responsabile della Protezione dei Dati (DPO) designato per corrispondenza.</p>
+                </section>
+
+                <!-- 2. Tipologie di dati -->
+                <section>
+                    <h4 class="text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs font-extrabold shrink-0">2</span>
+                        Tipologie di Dati Raccolti
+                    </h4>
+                    <p>Il Titolare tratta le seguenti categorie di dati personali:</p>
+                    <ul class="mt-2 space-y-1.5">
+                        <li>• <strong>Dati identificativi e di contatto</strong>: nome e cognome del referente, denominazione dell'attività commerciale;</li>
+                        <li>• <strong>Dati di contatto</strong>: indirizzo email e numero di telefono;</li>
+                        <li>• <strong>Dati relativi alla richiesta</strong>: città/progetto di interesse, livello di sponsorizzazione, eventuali messaggi o note;</li>
+                        <li>• <strong>Dati di navigazione</strong>: indirizzi IP, tipo di browser, sistema operativo, data e ora di accesso possono essere raccolti automaticamente durante la navigazione del Sito;</li>
+                        <li>• <strong>Dati di geolocalizzazione</strong>: nell'ambito della Web App di gioco, i dati di posizione GPS sono raccolti <strong>esclusivamente sul dispositivo dell'utente</strong> e solo previo consenso esplicito, al solo fine di validare la presenza fisica presso i punti di interesse (POI). Non vengono memorizzati in forma identificativa.</li>
+                    </ul>
+                </section>
+
+                <!-- 3. Finalità e base giuridica -->
+                <section>
+                    <h4 class="text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs font-extrabold shrink-0">3</span>
+                        Finalità e Base Giuridica del Trattamento
+                    </h4>
+                    <p>I dati sono trattati per le seguenti finalità:</p>
+                    <ul class="mt-2 space-y-2">
+                        <li>• <strong>Rispondere alle richieste di contatto e di candidatura come sponsor</strong>. Base giuridica: esecuzione di misure precontrattuali su richiesta dell'interessato e/o legittimo interesse (art. 6, c. 1, lett. b e f del GDPR).</li>
+                        <li>• <strong>Concludere e gestire i rapporti contrattuali</strong> con sponsor e partner. Base giuridica: esecuzione del contratto (art. 6, c. 1, lett. b).</li>
+                        <li>• <strong>Adempiere ad obblighi di legge</strong> (fatturazione, contabilità). Base giuridica: obbligo legale (art. 6, c. 1, lett. c).</li>
+                        <li>• <strong>Inviare comunicazioni commerciali e marketing</strong>, esclusivamente con consenso esplicito, revocabile in qualsiasi momento (art. 6, c. 1, lett. a).</li>
+                        <li>• <strong>Analisi statistiche e di miglioramento del servizio</strong>, in forma aggregata e anonimizzata. Base giuridica: legittimo interesse (art. 6, c. 1, lett. f).</li>
+                    </ul>
+                    <p class="mt-2">Il conferimento dei dati contrassegnati come obbligatori è necessario per rispondere alla richiesta: il rifiuto a fornirli comporta l'impossibilità di procedere. I dati facoltativi sono resi a discrezione dell'utente.</p>
+                </section>
+
+                <!-- 4. Modalità -->
+                <section>
+                    <h4 class="text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs font-extrabold shrink-0">4</span>
+                        Modalità del Trattamento
+                    </h4>
+                    <p>Il trattamento avviene mediante strumenti manuali e/o informatici, con logiche strettamente correlate alle finalità indicate e in modo da garantire la sicurezza, la riservatezza e l'integrità dei dati. I dati sono trattati da personale incaricato, adeguatamente formato e autorizzato.</p>
+                </section>
+
+                <!-- 5. Conservazione -->
+                <section>
+                    <h4 class="text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs font-extrabold shrink-0">5</span>
+                        Conservazione dei Dati
+                    </h4>
+                    <p>I dati sono conservati per il tempo strettamente necessario alle finalità indicate e, in particolare:</p>
+                    <ul class="mt-2 space-y-1.5">
+                        <li>• i dati dei form di contatto/sponsor sono conservati per <strong>24 mesi</strong> dall'ultima interazione, salvo richiesta di cancellazione anticipata;</li>
+                        <li>• i dati relativi a rapporti contrattuali sono conservati per la durata del rapporto e per i successivi <strong>10 anni</strong> per obblighi fiscali e contabili;</li>
+                        <li>• i dati trattati per finalità di marketing sono conservati fino al <strong>ritiro del consenso</strong>.</li>
+                    </ul>
+                </section>
+
+                <!-- 6. Destinatari -->
+                <section>
+                    <h4 class="text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs font-extrabold shrink-0">6</span>
+                        Destinatari dei Dati
+                    </h4>
+                    <p>I dati potranno essere comunicati a:</p>
+                    <ul class="mt-2 space-y-1.5">
+                        <li>• soggetti che agiscono in qualità di <strong>Responsabili del trattamento</strong> (es. provider di servizi email, hosting, CRM, strumenti di analisi) previa stipula di apposito contratto;</li>
+                        <li>• liberi professionisti, studi o società in qualità di <strong>Titolari autonomi</strong> (es. consulenti fiscali, legali, revisori);</li>
+                        <li>• soggetti pubblici o privati cui la comunicazione è obbligatoria per legge o per ordine delle autorità.</li>
+                    </ul>
+                    <p class="mt-2">L'elenco aggiornato dei Responsabili è disponibile presso il Titolare.</p>
+                </section>
+
+                <!-- 7. Trasferimento extra-UE -->
+                <section>
+                    <h4 class="text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs font-extrabold shrink-0">7</span>
+                        Trasferimento dei Dati fuori dall'Unione Europea
+                    </h4>
+                    <p>I dati potranno essere trasferiti verso paesi extra-UE (ad esempio qualora si utilizzino servizi cloud con server localizzati fuori dall'UE). Il trasferimento avviene esclusivamente verso Paesi terzi ritenuti adeguati dalla Commissione UE o, in mancanza, previa adozione delle garanzie adeguate previste dal GDPR (clausole contrattuali tipo, decisioni di adeguatezza, BCR).</p>
+                </section>
+
+                <!-- 8. Cookie -->
+                <section>
+                    <h4 class="text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs font-extrabold shrink-0">8</span>
+                        Cookie e Tecnologie Simili
+                    </h4>
+                    <p>Il Sito utilizza cookie e tecnologie analoghe per garantire il corretto funzionamento, analizzare il traffico e migliorare l'esperienza dell'utente. I cookie tecnici sono attivati per default; i cookie di profilazione e analytics (se presenti) sono attivati esclusivamente previo consenso, revocabile in qualsiasi momento.</p>
+                </section>
+
+                <!-- 9. Diritti -->
+                <section>
+                    <h4 class="text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs font-extrabold shrink-0">9</span>
+                        Diritti dell'Interessato
+                    </h4>
+                    <p>In qualità di interessato, Lei ha diritto di:</p>
+                    <ul class="mt-2 space-y-1.5">
+                        <li>• <strong>Accesso</strong> (art. 15): ottenere conferma del trattamento e i relativi dettagli;</li>
+                        <li>• <strong>Rettifica</strong> (art. 16): correggere dati inesatti o integrarli;</li>
+                        <li>• <strong>Cancellazione</strong> ("diritto all'oblio", art. 17);</li>
+                        <li>• <strong>Limitazione</strong> del trattamento (art. 18);</li>
+                        <li>• <strong>Portabilità</strong> dei dati (art. 20);</li>
+                        <li>• <strong>Opposizione</strong> al trattamento (art. 21) e revoca del consenso (art. 7);</li>
+                        <li>• <strong>Proporre reclamo</strong> presso un'autorità di controllo.</li>
+                    </ul>
+                    <p class="mt-2">I diritti possono essere esercitati inviando una richiesta all'indirizzo email del Titolare. Il Titolare risponde nei termini previsti dalla legge (generalmente entro 1 mese).</p>
+                </section>
+
+                <!-- 10. Reclamo -->
+                <section>
+                    <h4 class="text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs font-extrabold shrink-0">10</span>
+                        Diritto di Reclamo
+                    </h4>
+                    <p>Qualora ritenga che il trattamento dei Suoi dati violi il GDPR, ha il diritto di proporre reclamo al Garante per la Protezione dei Dati Personali — Piazza di Monte Citorio 121, 00186 Roma (RM) — <a href="https://www.garanteprivacy.org" target="_blank" rel="noopener" class="text-indigo-600 dark:text-indigo-400 hover:underline">www.garanteprivacy.org</a>.</p>
+                </section>
+
+                <!-- 11. Modifiche -->
+                <section>
+                    <h4 class="text-base font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs font-extrabold shrink-0">11</span>
+                        Modifiche all'Informativa
+                    </h4>
+                    <p>Il Titolare si riserva di modificare o aggiornare la presente informativa in qualsiasi momento, in conformità alle normative vigenti. Si invita a consultare regolarmente questa pagina.</p>
+                </section>
+
+                <p class="text-xs text-slate-400 dark:text-slate-500 italic border-t border-slate-200 dark:border-slate-800 pt-4">Ultimo aggiornamento: 11 luglio 2026.</p>
+            </div>
+
+            <!-- Sticky Footer -->
+            <div class="p-6 border-t border-slate-200 dark:border-slate-800 shrink-0 flex flex-col sm:flex-row items-center gap-3">
+                <p class="text-xs text-slate-500 dark:text-slate-400 sm:flex-1 text-center sm:text-left">Per qualsiasi dubbio, contattaci all'indirizzo <a href="mailto:h4shell@gmail.com" class="text-indigo-600 dark:text-indigo-400 hover:underline font-semibold">h4shell@gmail.com</a></p>
+                <button onclick="closePrivacy()" class="w-full sm:w-auto px-8 py-3 bg-gradient-to-tr from-indigo-600 to-violet-500 hover:from-indigo-700 hover:to-violet-600 text-white font-bold text-xs rounded-xl transition-all shadow-lg shadow-indigo-600/20">Ho letto, chiudi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
     <footer class="border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-950/50">
         <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-8">
             <div class="flex items-center gap-3">
@@ -967,16 +1826,16 @@
                 </div>
                 <span class="text-md font-bold tracking-tight text-slate-900 dark:text-white">Urban Quest</span>
             </div>
-            
-            <span data-i18n="footer_copy" class="text-xs text-slate-500 dark:text-slate-400">© 2026 Urban Quest. Tutti i diritti riservati. Soluzione di marketing turistico per comuni italiani.</span>
+
+            <span data-i18n="footer_copy" class="text-xs text-slate-500 dark:text-slate-400 text-center">© 2026 Urban Quest. Tutti i diritti riservati. Piattaforma di proximity marketing e turismo gamificato.</span>
 
             <div class="flex items-center gap-6">
-                <a href="#how-it-works" class="text-xs text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 transition-colors">Privacy Policy</a>
+                <button onclick="openPrivacy()" class="text-xs text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 transition-colors">Privacy Policy</button>
                 <a href="#sponsors" class="text-xs text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400 transition-colors">Sponsorships</a>
             </div>
         </div>
     </footer>
 
-<script src="app.js"></script>
+<script src="app.js" defer></script>
 </body>
 </html>
