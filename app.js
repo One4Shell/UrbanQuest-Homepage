@@ -1110,6 +1110,43 @@ function toggleFaq(num) {
 // Handle Form Submission with visual feedback
 function handleFormSubmit(event) {
     event.preventDefault();
+
+    const form = document.getElementById('sponsor-form');
+    const data = new FormData(form);
+
+    const tierLabels = {
+        bronze: 'Bronzo (80€ / mese)',
+        silver: 'Argento (135€ / mese)',
+        gold: 'Oro (800€ / anno)'
+    };
+    const projectLabels = {
+        bordighera: 'Bordighera',
+        vallecrosia: 'Vallecrosia',
+        new_city: 'Nuovo comune (da proporre)'
+    };
+
+    const name = data.get('name') || '';
+    const business = data.get('business') || '';
+    const email = data.get('email') || '';
+    const phone = data.get('phone') || '';
+    const project = projectLabels[data.get('project')] || data.get('project') || '';
+    const tier = tierLabels[data.get('tier')] || data.get('tier') || '';
+    const message = data.get('message') || '';
+
+    let text = `*Nuova Candidatura Sponsor — Urban Quest*\n\n`;
+    text += `*Nome Referente:* ${name}\n`;
+    text += `*Attività:* ${business}\n`;
+    text += `*Email:* ${email}\n`;
+    text += `*Telefono:* ${phone}\n`;
+    text += `*Progetto / Città:* ${project}\n`;
+    text += `*Livello:* ${tier}\n`;
+    if (message.trim()) {
+        text += `\n*Messaggio:* ${message}\n`;
+    }
+
+    const whatsappUrl = `https://wa.me/393481206604?text=${encodeURIComponent(text)}`;
+    window.open(whatsappUrl, '_blank');
+
     document.getElementById('feedback-message').classList.remove('hidden');
 }
 
