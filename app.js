@@ -1159,7 +1159,7 @@ function resetSponsorForm() {
 // List of sponsor logos. Add/remove files freely — the marquee adapts.
 // Supported formats: svg, png, jpg, jpeg, webp. Drop them in /sponsor/.
 const SPONSORS = [
-    { src: 'sponsor/leisy.svg',     alt: 'Leisy' },
+    { src: 'sponsor/leisy.png',     alt: 'Leisy' },
     { src: 'sponsor/marmura.png',   alt: 'Marmura' },
     { src: 'sponsor/ascibretta.jpg', alt: 'Ascibretta' },
     { src: 'sponsor/vernier.jpg',   alt: 'Vernier' },
@@ -1177,7 +1177,7 @@ function buildSponsorMarquee() {
 
         SPONSORS.forEach(s => {
             const wrap = document.createElement('div');
-            wrap.className = 'sponsor-logo flex items-center justify-center h-24 sm:h-32 w-auto px-2';
+            wrap.className = 'sponsor-logo flex items-center justify-center h-24 sm:h-32 w-auto px-2 bg-transparent';
 
             const img = document.createElement('img');
             img.src = s.src;
