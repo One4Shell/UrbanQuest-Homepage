@@ -1177,7 +1177,7 @@ function buildSponsorMarquee() {
 
         SPONSORS.forEach(s => {
             const wrap = document.createElement('div');
-            wrap.className = 'sponsor-logo flex items-center justify-center h-24 sm:h-32 w-auto px-2 bg-transparent';
+            wrap.className = 'sponsor-logo flex items-center justify-center h-24 sm:h-32 w-auto px-2';
 
             const img = document.createElement('img');
             img.src = s.src;
