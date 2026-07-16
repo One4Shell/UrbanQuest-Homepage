@@ -79,6 +79,21 @@
             border-radius: 20px;
         }
 
+        /* Sponsor marquee logo tiles — uniform sizing, gentle lift on hover */
+        .sponsor-logo {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 0.75rem;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: grayscale(0.15);
+        }
+        .dark .sponsor-logo {
+            background: rgba(15, 23, 42, 0.4);
+        }
+        .sponsor-logo:hover {
+            transform: scale(1.04);
+            filter: grayscale(0);
+        }
+
         /* Floating animation for app showcase mockups */
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
@@ -518,25 +533,9 @@
         <div class="max-w-7xl mx-auto px-6 mb-4 flex justify-between items-center">
             <span data-i18n="marquee_title" class="text-xs font-bold tracking-widest text-slate-400 dark:text-slate-500 uppercase">I Nostri Sponsor e Partner Locali</span>
         </div>
-        <div class="relative w-full flex overflow-x-hidden">
-            <!-- First group -->
-            <div class="animate-marquee whitespace-nowrap flex items-center gap-16 text-slate-400 dark:text-slate-600 font-bold">
-                <span class="text-xl tracking-tight flex items-center gap-2">RISTORANTE DA MARIO</span>
-                <span class="text-xl tracking-tight flex items-center gap-2">CAFFÈ CENTRALE</span>
-                <span class="text-xl tracking-tight flex items-center gap-2">HOTEL RIVIERA</span>
-                <span class="text-xl tracking-tight flex items-center gap-2">LIGURIA TOURS</span>
-                <span class="text-xl tracking-tight flex items-center gap-2">PASTICCERIA MILLEFOGLIE</span>
-                <span class="text-xl tracking-tight flex items-center gap-2">GELATERIA MARE</span>
-            </div>
-            <!-- Second group (identical copy to make it seamless) -->
-            <div class="animate-marquee whitespace-nowrap flex items-center gap-16 text-slate-400 dark:text-slate-600 font-bold" aria-hidden="true">
-                <span class="text-xl tracking-tight flex items-center gap-2">RISTORANTE DA MARIO</span>
-                <span class="text-xl tracking-tight flex items-center gap-2">CAFFÈ CENTRALE</span>
-                <span class="text-xl tracking-tight flex items-center gap-2">HOTEL RIVIERA</span>
-                <span class="text-xl tracking-tight flex items-center gap-2">LIGURIA TOURS</span>
-                <span class="text-xl tracking-tight flex items-center gap-2">PASTICCERIA MILLEFOGLIE</span>
-                <span class="text-xl tracking-tight flex items-center gap-2">GELATERIA MARE</span>
-            </div>
+        <div class="relative w-full overflow-x-hidden">
+            <!-- Populated dynamically by buildSponsorMarquee() in app.js -->
+            <div id="sponsor-marquee-track" class="flex w-max items-center gap-24 whitespace-nowrap will-change-transform animate-marquee"></div>
         </div>
     </section>
 

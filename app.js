@@ -1155,6 +1155,52 @@ function resetSponsorForm() {
     document.getElementById('feedback-message').classList.add('hidden');
 }
 
+// =============== SPONSOR MARQUEE ===============
+// List of sponsor logos. Add/remove files freely — the marquee adapts.
+// Supported formats: svg, png, jpg, jpeg, webp. Drop them in /sponsor/.
+const SPONSORS = [
+    { src: 'sponsor/leisy.svg',     alt: 'Leisy' },
+    { src: 'sponsor/marmura.png',   alt: 'Marmura' },
+    { src: 'sponsor/ascibretta.jpg', alt: 'Ascibretta' },
+    { src: 'sponsor/vernier.jpg',   alt: 'Vernier' },
+];
+
+function buildSponsorMarquee() {
+    const track = document.getElementById('sponsor-marquee-track');
+    if (!track) return;
+
+    // Build one group of logos, then duplicate it so the -50% keyframe loops seamlessly.
+    const renderGroup = (hidden) => {
+        const group = document.createElement('div');
+        group.className = 'flex items-center gap-24 shrink-0';
+        if (hidden) group.setAttribute('aria-hidden', 'true');
+
+        SPONSORS.forEach(s => {
+            const wrap = document.createElement('div');
+            wrap.className = 'sponsor-logo flex items-center justify-center h-24 sm:h-32 w-auto px-2';
+
+            const img = document.createElement('img');
+            img.src = s.src;
+            img.alt = s.alt || '';
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            img.className = 'max-h-full max-w-[16rem] w-auto h-auto object-contain';
+            wrap.appendChild(img);
+            group.appendChild(wrap);
+        });
+        return group;
+    };
+
+    track.innerHTML = '';
+    track.appendChild(renderGroup(false));
+    track.appendChild(renderGroup(true));
+
+    // Adjust animation duration based on number of logos for a steady speed.
+    const perGroup = SPONSORS.length;
+    const duration = Math.max(20, perGroup * 8);
+    track.style.animationDuration = `${duration}s`;
+}
+
 // =============== PRIVACY POLICY MODAL ===============
 function openPrivacy() {
     const modal = document.getElementById('privacy-modal');
@@ -1184,3 +1230,6 @@ document.addEventListener('keydown', function(e) {
         }
     }
 });
+
+// Build the sponsor marquee once the DOM is ready
+document.addEventListener('DOMContentLoaded', buildSponsorMarquee);
