@@ -16,6 +16,11 @@ const translations = {
         hero_desc: "Urban Quest è l'infrastruttura digitale che fonde turismo esperienziale, valorizzazione culturale e proximity marketing. Attraverso la gamification, trasformiamo le città in tabelloni di gioco a cielo aperto.",
         hero_form_city_label: "Seleziona Esperienza",
         hero_form_submit: "Avvia l'Avventura",
+        hero_locked_msg: "L'avventura si sblocca il 1 Agosto alle 09:00",
+        cd_days: "Giorni",
+        cd_hours: "Ore",
+        cd_mins: "Min",
+        cd_secs: "Sec",
         stat_tourists: "Turisti Intercettabili",
         stat_mobile: "Web-App",
         stat_download: "Download Richiesti",
@@ -238,6 +243,11 @@ const translations = {
         hero_desc: "Urban Quest is the digital infrastructure blending experiential tourism, cultural enhancement and proximity marketing. Through gamification, we turn cities into open-air game boards.",
         hero_form_city_label: "Select Experience",
         hero_form_submit: "Start the Adventure",
+        hero_locked_msg: "The adventure unlocks on August 1st at 09:00",
+        cd_days: "Days",
+        cd_hours: "Hours",
+        cd_mins: "Min",
+        cd_secs: "Sec",
         stat_tourists: "Potential Tourists",
         stat_mobile: "Web-Based",
         stat_download: "Downloads Needed",
@@ -460,6 +470,11 @@ const translations = {
         hero_desc: "Urban Quest est l'infrastructure numérique qui fusionne tourisme expérientiel, valorisation culturelle et proximity marketing. Par la ludification, nous transformons les villes en plateaux de jeu à ciel ouvert.",
         hero_form_city_label: "Sélectionner l'Expérience",
         hero_form_submit: "Lancer l'Aventure",
+        hero_locked_msg: "L'aventure se débloque le 1er Août à 09h00",
+        cd_days: "Jours",
+        cd_hours: "Heures",
+        cd_mins: "Min",
+        cd_secs: "Sec",
         stat_tourists: "Touristes Potentiels",
         stat_mobile: "100% Web",
         stat_download: "Téléchargements Requis",
@@ -682,6 +697,11 @@ const translations = {
         hero_desc: "Urban Quest ist die digitale Infrastruktur, die Erlebnistourismus, kulturelle Wertschöpfung und Proximity Marketing vereint. Durch Gamification machen wir Städte zu Spielbrettern unter freiem Himmel.",
         hero_form_city_label: "Erlebnis Auswählen",
         hero_form_submit: "Abenteuer Starten",
+        hero_locked_msg: "Das Abenteuer wird am 1. August um 09:00 Uhr freigeschaltet",
+        cd_days: "Tage",
+        cd_hours: "Std",
+        cd_mins: "Min",
+        cd_secs: "Sek",
         stat_tourists: "Potenzielle Touristen",
         stat_mobile: "100% Web-basiert",
         stat_download: "Downloads nötig",
@@ -914,6 +934,12 @@ function changeLang(lang) {
 
     // Close dropdown
     document.getElementById('lang-dropdown').classList.add('hidden');
+
+    // Keep hero lock message in sync with the active language
+    const lockedMsg = document.getElementById('hero-locked-msg');
+    if (lockedMsg && translations[lang] && translations[lang].hero_locked_msg) {
+        lockedMsg.textContent = translations[lang].hero_locked_msg;
+    }
 }
 
 // Dropdown toggle
@@ -972,6 +998,9 @@ window.onload = function() {
 
     // Set default translation
     changeLang('it');
+
+    // Activate hero countdown lock (gates quest access until unlock date)
+    initCountdown();
 }
 
 const cityPOIs = {
@@ -1035,6 +1064,89 @@ function triggerRedirection(cityName) {
         redirectTimeoutId = null;
         window.location.href = targetQuestUrl;
     }, 2500);
+}
+
+// ============================================================
+//  HERO COUNTDOWN LOCK — gates all quest access until the
+//  official unlock date (1 August 2026, 09:00 local time).
+// ============================================================
+const QUEST_UNLOCK = new Date(2026, 7, 1, 9, 0, 0); // month is 0-indexed -> 7 = August
+let countdownIntervalId = null;
+
+function initCountdown() {
+    const lockedWrap = document.getElementById('hero-locked-wrap');
+    const msg = document.getElementById('hero-locked-msg');
+    const submitBtn = document.getElementById('hero-submit-btn');
+    const playNow = document.getElementById('hero-play-now');
+
+    if (!lockedWrap) return;
+
+    // Keep label in sync with the active language
+    if (msg && translations[currentLang] && translations[currentLang].hero_locked_msg) {
+        msg.textContent = translations[currentLang].hero_locked_msg;
+    }
+
+    function lockAccess() {
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
+        }
+        if (playNow) {
+            playNow.classList.add('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
+            playNow.removeAttribute('href');
+            playNow.style.pointerEvents = 'none';
+        }
+        lockedWrap.classList.remove('hidden');
+    }
+
+    function unlockAccess() {
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
+        }
+        if (playNow) {
+            playNow.classList.remove('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
+            playNow.style.pointerEvents = '';
+            playNow.setAttribute('href', 'https://bordighera.urbanquest.it');
+        }
+        lockedWrap.classList.add('hidden');
+    }
+
+    function tick() {
+        const diff = QUEST_UNLOCK - new Date();
+        if (diff <= 0) {
+            if (countdownIntervalId) {
+                clearInterval(countdownIntervalId);
+                countdownIntervalId = null;
+            }
+            unlockAccess();
+            return;
+        }
+
+        const totalSecs = Math.floor(diff / 1000);
+        const days = Math.floor(totalSecs / 86400);
+        const hours = Math.floor((totalSecs % 86400) / 3600);
+        const mins = Math.floor((totalSecs % 3600) / 60);
+        const secs = totalSecs % 60;
+
+        const pad = (n) => String(n).padStart(2, '0');
+        const d = document.getElementById('cd-days');
+        const h = document.getElementById('cd-hours');
+        const m = document.getElementById('cd-mins');
+        const s = document.getElementById('cd-secs');
+        if (d) d.textContent = pad(days);
+        if (h) h.textContent = pad(hours);
+        if (m) m.textContent = pad(mins);
+        if (s) s.textContent = pad(secs);
+    }
+
+    if (QUEST_UNLOCK - new Date() <= 0) {
+        unlockAccess();
+    } else {
+        lockAccess();
+        tick();
+        countdownIntervalId = setInterval(tick, 1000);
+    }
 }
 
 function openTargetQuest() {

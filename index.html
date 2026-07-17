@@ -373,7 +373,7 @@
                 </button>
 
                 <!-- Hero CTA (Navbar) -->
-                <a href="https://bordighera.urbanquest.it" data-i18n="cta_start" class="hidden sm:inline-flex items-center justify-center gap-1.5 px-4 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition-all uq-cta-pulse">
+                <a id="hero-play-now" href="https://bordighera.urbanquest.it" data-i18n="cta_start" class="hidden sm:inline-flex items-center justify-center gap-1.5 px-4 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition-all uq-cta-pulse">
                     <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M6.3 2.84A1 1 0 005 3.73v12.54a1 1 0 001.3.9l11-6.27a1 1 0 000-1.78l-11-6.28z"/></svg>
                     Play Now
                 </a>
@@ -422,12 +422,37 @@
                         </div>
 
                         <!-- CTA Button -->
-                        <button type="submit" class="w-full py-4 bg-gradient-to-tr from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-extrabold text-sm rounded-2xl transition-all shadow-lg shadow-blue-600/20 flex items-center justify-center gap-2">
+                        <button type="submit" id="hero-submit-btn" class="w-full py-4 bg-gradient-to-tr from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-extrabold text-sm rounded-2xl transition-all shadow-lg shadow-blue-600/20 flex items-center justify-center gap-2">
                             <span data-i18n="hero_form_submit">Avvia l'Avventura</span>
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>
                         </button>
+
+                        <!-- Countdown Lock (hidden until JS activates it) -->
+                        <div id="hero-locked-wrap" class="hidden mt-4">
+                            <p id="hero-locked-msg" class="text-center text-xs font-semibold text-slate-500 dark:text-slate-400 mb-3">
+                                L'avventura si sblocca il 1 Agosto alle 09:00
+                            </p>
+                            <div class="grid grid-cols-4 gap-2 text-center">
+                                <div class="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl py-3">
+                                    <div id="cd-days" class="text-2xl font-extrabold text-blue-600 dark:text-blue-400 tabular-nums">00</div>
+                                    <div data-i18n="cd_days" class="text-[10px] font-bold uppercase tracking-wide text-slate-400 dark:text-slate-500 mt-1">Giorni</div>
+                                </div>
+                                <div class="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl py-3">
+                                    <div id="cd-hours" class="text-2xl font-extrabold text-blue-600 dark:text-blue-400 tabular-nums">00</div>
+                                    <div data-i18n="cd_hours" class="text-[10px] font-bold uppercase tracking-wide text-slate-400 dark:text-slate-500 mt-1">Ore</div>
+                                </div>
+                                <div class="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl py-3">
+                                    <div id="cd-mins" class="text-2xl font-extrabold text-blue-600 dark:text-blue-400 tabular-nums">00</div>
+                                    <div data-i18n="cd_mins" class="text-[10px] font-bold uppercase tracking-wide text-slate-400 dark:text-slate-500 mt-1">Min</div>
+                                </div>
+                                <div class="bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl py-3">
+                                    <div id="cd-secs" class="text-2xl font-extrabold text-blue-600 dark:text-blue-400 tabular-nums">00</div>
+                                    <div data-i18n="cd_secs" class="text-[10px] font-bold uppercase tracking-wide text-slate-400 dark:text-slate-500 mt-1">Sec</div>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
 
@@ -529,7 +554,7 @@
     </section>
 
     <!-- ================= MARQUEE / SPONSORS STRIP ================= -->
-    <section class="py-10 bg-slate-100/50 dark:bg-slate-900/50 border-y border-slate-200/50 dark:border-slate-800/50 overflow-hidden">
+    <section class="py-10 bg-slate-100/50 dark:bg-slate-900/50 border-y border-slate-200/50 dark:border-slate-800/50 overflow-hidden" style="display: none;">
         <div class="max-w-7xl mx-auto px-6 mb-4 flex justify-between items-center">
             <span data-i18n="marquee_title" class="text-xs font-bold tracking-widest text-slate-400 dark:text-slate-500 uppercase">I Nostri Sponsor e Partner Locali</span>
         </div>
